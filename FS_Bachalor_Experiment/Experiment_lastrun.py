@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2023.1.3),
-    on Dezember 12, 2024, at 14:15
+    on Dezember 19, 2024, at 14:55
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -40,11 +40,15 @@ import platform
 from EyeLinkCoreGraphicsPsychoPy import EyeLinkCoreGraphicsPsychoPy
 from string import ascii_letters, digits
 import eyetracking
+
 # Set to False if you want to use eyetracking
 dummy_mode = True
 # Set name for data folder for EDFs
 eyetracker_data_folder = eyetracking.create_eyetracking_folder()
 # Creates by default a folder with the name "eyetracker data"
+
+
+from psychopy import sound
 # Run 'Before Experiment' code from SetUpDigitSpanFinder
 #is used for the max number of digits 
 #maxes at 9 
@@ -62,8 +66,18 @@ LoopCounter = 0
 
 #Array of correct Digits
 CorrectDigits = []
+# Run 'Before Experiment' code from code_3
+digitSound = 0
+# Run 'Before Experiment' code from EyeTrackingFlagFocusCross
+time = 2
 # Run 'Before Experiment' code from CodeEndDigitSpanFindMax
-file = open("DigitSpanMax.txt","w")
+file = open("DigitSpanMax.txt","w+")
+# Run 'Before Experiment' code from code_2
+filedata = 0
+# Run 'Before Experiment' code from EyeTrackingFlagFocusCross
+time = 2
+# Run 'Before Experiment' code from EyeTrackingFlagFocusCross
+time = 2
 # Run 'Before Experiment' code from DT_ManageVarsCode
 #holds the overall trail number 
 #1-30
@@ -82,6 +96,8 @@ DTDigitSpanNumberResponse = 0
 #1-4
 DTDigitSpanSacalaResponse = 0
 
+# Run 'Before Experiment' code from EyeTrackingFlagFocusCross
+time = 2
 
 
 # Ensure that relative paths start from the same directory as this script
@@ -108,7 +124,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\Florian\\Desktop\\FS_Bachalor_Experiment\\Experiment_lastrun.py',
+    originPath='C:\\Users\\Florian\\Desktop\\FS_All_Tests\\FS_AllTests\\FS_Bachalor_Experiment\\Experiment_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -123,7 +139,7 @@ frameTolerance = 0.001  # how close to onset before 'same' frame
 # --- Setup the Window ---
 win = visual.Window(
     size=[1128, 752], fullscr=True, screen=0, 
-    winType='pyglet', allowStencil=False,
+    winType='pyglet', allowStencil=True,
     monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
     backgroundImage='Conditions/background.bmp', backgroundFit='cover',
     blendMode='avg', useFBO=True, 
@@ -151,13 +167,6 @@ eyetracker = None
 defaultKeyboard = keyboard.Keyboard(backend='iohub')
 
 # --- Initialize components for Routine "Welcome" ---
-WelcomeText = visual.TextStim(win=win, name='WelcomeText',
-    text='Willkommen bei unserem Experiment \n\nDanke für die Teilnahme \n\nbla bla bla \n\nDrücken Sie Space um weiter zu kommen ',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=0.0);
 Next_Welcome = keyboard.Keyboard()
 # Run 'Begin Experiment' code from Python_Eyetracking_setUp
 # Variable for naming EDF
@@ -171,37 +180,53 @@ eyetracking.edf_name_check(edf_fname)
 el_tracker = eyetracking.connect_tracker(dummy_mode)
 edf_file = eyetracking.open_edf_file(el_tracker, edf_fname)
 eyetracking.configure_tracker(el_tracker, dummy_mode)
+WelcomeText_Box = visual.TextBox2(
+     win, text='Willkommen zu unserem Experiment und vielen Dank für Ihre Teilnahme! \n\nIm Folgenden werden Sie ein paar kognitive Aufgaben lösen.  \n\nDie Aufgaben werden jeweils vorher kurz erklärt.   \n\nIhre Daten werden selbstverständlich anonym erfasst und vertraulich behandelt. ', placeholder='Type here...', font='Arial',
+     pos=(0, 0),     letterHeight=0.05,
+     size=(1.2, 0.7), borderWidth=2.0,
+     color=[-1.0000, -1.0000, -1.0000], colorSpace='rgb',
+     opacity=None,
+     bold=False, italic=False,
+     lineSpacing=1.0, speechPoint=None,
+     padding=0.0, alignment='center',
+     anchor='center', overflow='visible',
+     fillColor=[0.0039, 0.0039, 0.0039], borderColor=None,
+     flipHoriz=False, flipVert=False, languageStyle='LTR',
+     editable=False,
+     name='WelcomeText_Box',
+     depth=-2, autoLog=True,
+)
 
 # --- Initialize components for Routine "DSSetUpVars" ---
 
 # --- Initialize components for Routine "DSExplaineFindMax" ---
-TextExplainDigitSpanMaxFind = visual.TextStim(win=win, name='TextExplainDigitSpanMaxFind',
-    text='Erklärt was in der näcshte aufgabe getan wird :)\n\nSpace to continue\n',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=0.0);
 KeyDigitspanFindMax = keyboard.Keyboard()
+Text_ExplainFindMax = visual.TextBox2(
+     win, text='Hier wird der DigitSpan max gefunden \nich habe dafür keinen fixen Text im Dokument gefunden \nsry falls ich es über sehen habe \n(space to next) \n(und es folgt das finden des digitspans --> 3-max 9 zahlen you know the rest) ', placeholder='Type here...', font='Arial',
+     pos=(0, 0),     letterHeight=0.05,
+     size=(1.2, 0.7), borderWidth=2.0,
+     color=[-1.0000, -1.0000, -1.0000], colorSpace='rgb',
+     opacity=None,
+     bold=False, italic=False,
+     lineSpacing=1.0, speechPoint=None,
+     padding=0.0, alignment='center',
+     anchor='center', overflow='visible',
+     fillColor=[0.0039, 0.0039, 0.0039], borderColor=None,
+     flipHoriz=False, flipVert=False, languageStyle='LTR',
+     editable=False,
+     name='Text_ExplainFindMax',
+     depth=-1, autoLog=True,
+)
 
 # --- Initialize components for Routine "DSDisplayLetter" ---
-DisplayedItem = visual.TextStim(win=win, name='DisplayedItem',
-    text='',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=0.0);
 
 # --- Initialize components for Routine "FocusCross" ---
-FocusCrossImg = visual.ImageStim(
-    win=win,
-    name='FocusCrossImg', 
-    image='Conditions/sailor_void.png', mask=None, anchor='center',
-    ori=0.0, pos=(0, 0), size=(0.5, 0.5),
-    color=[1,1,1], colorSpace='rgb', opacity=None,
-    flipHoriz=False, flipVert=False,
-    texRes=128.0, interpolate=True, depth=0.0)
+Cross = visual.ShapeStim(
+    win=win, name='Cross', vertices='cross',
+    size=(0.2, 0.2),
+    ori=0.0, pos=(0, 0), anchor='center',
+    lineWidth=1.0,     colorSpace='rgb',  lineColor=[-1.0000, -1.0000, -1.0000], fillColor=[0.6549, 0.6549, 0.6549],
+    opacity=None, depth=0.0, interpolate=True)
 
 # --- Initialize components for Routine "DSFindMaxEndInnerLoop" ---
 
@@ -245,31 +270,34 @@ Testing_3 = visual.TextStim(win=win, name='Testing_3',
 
 # --- Initialize components for Routine "DSScala" ---
 DSTextScala = visual.TextStim(win=win, name='DSTextScala',
-    text='Wie sicher sind Sie mit der Antwort:) ? ',
+    text='Wie sicher sind Sie mit der Antwort :) ? ',
     font='Open Sans',
     pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
     color='white', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
     depth=0.0);
-Slider_Respone_Certainty = visual.Slider(win=win, name='Slider_Respone_Certainty',
-    startValue=None, size=1.0, pos=(0, -0.2), units=win.units,
-    labels=("sehr", "wenig", "mittel", "viel"), ticks=(1, 2, 3, 4), granularity=1.0,
-    style='choice', styleTweaks=(), opacity=None,
-    labelColor='LightGray', markerColor='Red', lineColor='White', colorSpace='rgb',
-    font='Open Sans', labelHeight=0.05,
-    flip=False, ori=0.0, depth=-1, readOnly=False)
+DSSalaResponse = keyboard.Keyboard()
 
 # --- Initialize components for Routine "DSFindMaxEndOuterLoop" ---
 
 # --- Initialize components for Routine "DSExplaineExample" ---
-TextDigtSpanExample = visual.TextStim(win=win, name='TextDigtSpanExample',
-    text='erklärt den unterschied zum normalen DigitSpan\n\nEs folgen ein paar teil runs zum testen ob es verstanden wurde\n\nspace to go next',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=0.0);
 KeyDigitSpanExplainExample = keyboard.Keyboard()
+TextExplain = visual.TextBox2(
+     win, text='', placeholder='Type here...', font='Arial',
+     pos=(0, 0),     letterHeight=0.08,
+     size=(1.2, 0.7), borderWidth=2.0,
+     color=[-1.0000, -1.0000, -1.0000], colorSpace='rgb',
+     opacity=None,
+     bold=False, italic=False,
+     lineSpacing=1.0, speechPoint=None,
+     padding=0.0, alignment='center',
+     anchor='center', overflow='visible',
+     fillColor=[0.0039, 0.0039, 0.0039], borderColor=None,
+     flipHoriz=False, flipVert=False, languageStyle='LTR',
+     editable=False,
+     name='TextExplain',
+     depth=-2, autoLog=True,
+)
 
 # --- Initialize components for Routine "DSAudioDisplayExplain" ---
 DSSoundExplain = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
@@ -277,14 +305,12 @@ DSSoundExplain = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
 DSSoundExplain.setVolume(1.0)
 
 # --- Initialize components for Routine "FocusCross" ---
-FocusCrossImg = visual.ImageStim(
-    win=win,
-    name='FocusCrossImg', 
-    image='Conditions/sailor_void.png', mask=None, anchor='center',
-    ori=0.0, pos=(0, 0), size=(0.5, 0.5),
-    color=[1,1,1], colorSpace='rgb', opacity=None,
-    flipHoriz=False, flipVert=False,
-    texRes=128.0, interpolate=True, depth=0.0)
+Cross = visual.ShapeStim(
+    win=win, name='Cross', vertices='cross',
+    size=(0.2, 0.2),
+    ori=0.0, pos=(0, 0), anchor='center',
+    lineWidth=1.0,     colorSpace='rgb',  lineColor=[-1.0000, -1.0000, -1.0000], fillColor=[0.6549, 0.6549, 0.6549],
+    opacity=None, depth=0.0, interpolate=True)
 
 # --- Initialize components for Routine "DSExplainEndInnerLoop" ---
 
@@ -300,19 +326,13 @@ DSAudioKeyNext = keyboard.Keyboard()
 
 # --- Initialize components for Routine "DSScala" ---
 DSTextScala = visual.TextStim(win=win, name='DSTextScala',
-    text='Wie sicher sind Sie mit der Antwort:) ? ',
+    text='Wie sicher sind Sie mit der Antwort :) ? ',
     font='Open Sans',
     pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
     color='white', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
     depth=0.0);
-Slider_Respone_Certainty = visual.Slider(win=win, name='Slider_Respone_Certainty',
-    startValue=None, size=1.0, pos=(0, -0.2), units=win.units,
-    labels=("sehr", "wenig", "mittel", "viel"), ticks=(1, 2, 3, 4), granularity=1.0,
-    style='choice', styleTweaks=(), opacity=None,
-    labelColor='LightGray', markerColor='Red', lineColor='White', colorSpace='rgb',
-    font='Open Sans', labelHeight=0.05,
-    flip=False, ori=0.0, depth=-1, readOnly=False)
+DSSalaResponse = keyboard.Keyboard()
 
 # --- Initialize components for Routine "DSDisplayReal" ---
 text = visual.TextStim(win=win, name='text',
@@ -332,14 +352,12 @@ DSDisplaySoundFull = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
 DSDisplaySoundFull.setVolume(1.0)
 
 # --- Initialize components for Routine "FocusCross" ---
-FocusCrossImg = visual.ImageStim(
-    win=win,
-    name='FocusCrossImg', 
-    image='Conditions/sailor_void.png', mask=None, anchor='center',
-    ori=0.0, pos=(0, 0), size=(0.5, 0.5),
-    color=[1,1,1], colorSpace='rgb', opacity=None,
-    flipHoriz=False, flipVert=False,
-    texRes=128.0, interpolate=True, depth=0.0)
+Cross = visual.ShapeStim(
+    win=win, name='Cross', vertices='cross',
+    size=(0.2, 0.2),
+    ori=0.0, pos=(0, 0), anchor='center',
+    lineWidth=1.0,     colorSpace='rgb',  lineColor=[-1.0000, -1.0000, -1.0000], fillColor=[0.6549, 0.6549, 0.6549],
+    opacity=None, depth=0.0, interpolate=True)
 
 # --- Initialize components for Routine "DSTrailsEndInnerLoop" ---
 
@@ -355,19 +373,13 @@ DSAudioKeyNext = keyboard.Keyboard()
 
 # --- Initialize components for Routine "DSScala" ---
 DSTextScala = visual.TextStim(win=win, name='DSTextScala',
-    text='Wie sicher sind Sie mit der Antwort:) ? ',
+    text='Wie sicher sind Sie mit der Antwort :) ? ',
     font='Open Sans',
     pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
     color='white', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
     depth=0.0);
-Slider_Respone_Certainty = visual.Slider(win=win, name='Slider_Respone_Certainty',
-    startValue=None, size=1.0, pos=(0, -0.2), units=win.units,
-    labels=("sehr", "wenig", "mittel", "viel"), ticks=(1, 2, 3, 4), granularity=1.0,
-    style='choice', styleTweaks=(), opacity=None,
-    labelColor='LightGray', markerColor='Red', lineColor='White', colorSpace='rgb',
-    font='Open Sans', labelHeight=0.05,
-    flip=False, ori=0.0, depth=-1, readOnly=False)
+DSSalaResponse = keyboard.Keyboard()
 
 # --- Initialize components for Routine "EyeTrackingStop" ---
 
@@ -461,14 +473,12 @@ DT_DS_Audio = sound.Sound('A', secs=1.0, stereo=True, hamming=True,
 DT_DS_Audio.setVolume(1.0)
 
 # --- Initialize components for Routine "FocusCross" ---
-FocusCrossImg = visual.ImageStim(
-    win=win,
-    name='FocusCrossImg', 
-    image='Conditions/sailor_void.png', mask=None, anchor='center',
-    ori=0.0, pos=(0, 0), size=(0.5, 0.5),
-    color=[1,1,1], colorSpace='rgb', opacity=None,
-    flipHoriz=False, flipVert=False,
-    texRes=128.0, interpolate=True, depth=0.0)
+Cross = visual.ShapeStim(
+    win=win, name='Cross', vertices='cross',
+    size=(0.2, 0.2),
+    ori=0.0, pos=(0, 0), anchor='center',
+    lineWidth=1.0,     colorSpace='rgb',  lineColor=[-1.0000, -1.0000, -1.0000], fillColor=[0.6549, 0.6549, 0.6549],
+    opacity=None, depth=0.0, interpolate=True)
 
 # --- Initialize components for Routine "DT_DS_InnerLoopEnd" ---
 
@@ -542,8 +552,9 @@ continueRoutine = True
 Next_Welcome.keys = []
 Next_Welcome.rt = []
 _Next_Welcome_allKeys = []
+WelcomeText_Box.reset()
 # keep track of which components have finished
-WelcomeComponents = [WelcomeText, Next_Welcome]
+WelcomeComponents = [Next_Welcome, WelcomeText_Box]
 for thisComponent in WelcomeComponents:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -565,26 +576,6 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
-    # *WelcomeText* updates
-    
-    # if WelcomeText is starting this frame...
-    if WelcomeText.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-        # keep track of start time/frame for later
-        WelcomeText.frameNStart = frameN  # exact frame index
-        WelcomeText.tStart = t  # local t and not account for scr refresh
-        WelcomeText.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(WelcomeText, 'tStartRefresh')  # time at next scr refresh
-        # add timestamp to datafile
-        thisExp.timestampOnFlip(win, 'WelcomeText.started')
-        # update status
-        WelcomeText.status = STARTED
-        WelcomeText.setAutoDraw(True)
-    
-    # if WelcomeText is active this frame...
-    if WelcomeText.status == STARTED:
-        # update params
-        pass
     
     # *Next_Welcome* updates
     waitOnFlip = False
@@ -613,6 +604,26 @@ while continueRoutine:
             Next_Welcome.duration = _Next_Welcome_allKeys[-1].duration
             # a response ends the routine
             continueRoutine = False
+    
+    # *WelcomeText_Box* updates
+    
+    # if WelcomeText_Box is starting this frame...
+    if WelcomeText_Box.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        WelcomeText_Box.frameNStart = frameN  # exact frame index
+        WelcomeText_Box.tStart = t  # local t and not account for scr refresh
+        WelcomeText_Box.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(WelcomeText_Box, 'tStartRefresh')  # time at next scr refresh
+        # add timestamp to datafile
+        thisExp.timestampOnFlip(win, 'WelcomeText_Box.started')
+        # update status
+        WelcomeText_Box.status = STARTED
+        WelcomeText_Box.setAutoDraw(True)
+    
+    # if WelcomeText_Box is active this frame...
+    if WelcomeText_Box.status == STARTED:
+        # update params
+        pass
     
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -653,7 +664,7 @@ routineTimer.reset()
 continueRoutine = True
 # update component parameters for each repeat
 # Run 'Begin Routine' code from SetUpDigitSpanFinder
-#calibration adn validation
+#calibration and validation
 eyetracking.calibration_validation(el_tracker, win, dummy_mode)
 # keep track of which components have finished
 DSSetUpVarsComponents = []
@@ -712,8 +723,9 @@ continueRoutine = True
 KeyDigitspanFindMax.keys = []
 KeyDigitspanFindMax.rt = []
 _KeyDigitspanFindMax_allKeys = []
+Text_ExplainFindMax.reset()
 # keep track of which components have finished
-DSExplaineFindMaxComponents = [TextExplainDigitSpanMaxFind, KeyDigitspanFindMax]
+DSExplaineFindMaxComponents = [KeyDigitspanFindMax, Text_ExplainFindMax]
 for thisComponent in DSExplaineFindMaxComponents:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -735,26 +747,6 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
-    # *TextExplainDigitSpanMaxFind* updates
-    
-    # if TextExplainDigitSpanMaxFind is starting this frame...
-    if TextExplainDigitSpanMaxFind.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-        # keep track of start time/frame for later
-        TextExplainDigitSpanMaxFind.frameNStart = frameN  # exact frame index
-        TextExplainDigitSpanMaxFind.tStart = t  # local t and not account for scr refresh
-        TextExplainDigitSpanMaxFind.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(TextExplainDigitSpanMaxFind, 'tStartRefresh')  # time at next scr refresh
-        # add timestamp to datafile
-        thisExp.timestampOnFlip(win, 'TextExplainDigitSpanMaxFind.started')
-        # update status
-        TextExplainDigitSpanMaxFind.status = STARTED
-        TextExplainDigitSpanMaxFind.setAutoDraw(True)
-    
-    # if TextExplainDigitSpanMaxFind is active this frame...
-    if TextExplainDigitSpanMaxFind.status == STARTED:
-        # update params
-        pass
     
     # *KeyDigitspanFindMax* updates
     waitOnFlip = False
@@ -783,6 +775,26 @@ while continueRoutine:
             KeyDigitspanFindMax.duration = _KeyDigitspanFindMax_allKeys[-1].duration
             # a response ends the routine
             continueRoutine = False
+    
+    # *Text_ExplainFindMax* updates
+    
+    # if Text_ExplainFindMax is starting this frame...
+    if Text_ExplainFindMax.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        Text_ExplainFindMax.frameNStart = frameN  # exact frame index
+        Text_ExplainFindMax.tStart = t  # local t and not account for scr refresh
+        Text_ExplainFindMax.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(Text_ExplainFindMax, 'tStartRefresh')  # time at next scr refresh
+        # add timestamp to datafile
+        thisExp.timestampOnFlip(win, 'Text_ExplainFindMax.started')
+        # update status
+        Text_ExplainFindMax.status = STARTED
+        Text_ExplainFindMax.setAutoDraw(True)
+    
+    # if Text_ExplainFindMax is active this frame...
+    if Text_ExplainFindMax.status == STARTED:
+        # update params
+        pass
     
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -839,9 +851,9 @@ for thisLoopMaxDigitSpanFind in LoopMaxDigitSpanFind:
             exec('{} = thisLoopMaxDigitSpanFind[paramName]'.format(paramName))
     
     # set up handler to look after randomisation of conditions etc
-    LoopDigitSpan = data.TrialHandler(nReps=1.0, method='random', 
+    LoopDigitSpan = data.TrialHandler(nReps=1.0, method='sequential', 
         extraInfo=expInfo, originPath=-1,
-        trialList=data.importConditions('Conditions/Conditions_Digits.xlsx'),
+        trialList=data.importConditions('Conditions/Conditions.xlsx'),
         seed=None, name='LoopDigitSpan')
     thisExp.addLoop(LoopDigitSpan)  # add the loop to the experiment
     thisLoopDigitSpan = LoopDigitSpan.trialList[0]  # so we can initialise stimuli with some values
@@ -860,9 +872,11 @@ for thisLoopMaxDigitSpanFind in LoopMaxDigitSpanFind:
         # --- Prepare to start Routine "DSDisplayLetter" ---
         continueRoutine = True
         # update component parameters for each repeat
-        DisplayedItem.setText(Digits)
+        # Run 'Begin Routine' code from code_3
+        digitSound = sound.Sound('Conditions/Audio/1.wav')
+        
         # keep track of which components have finished
-        DSDisplayLetterComponents = [DisplayedItem]
+        DSDisplayLetterComponents = []
         for thisComponent in DSDisplayLetterComponents:
             thisComponent.tStart = None
             thisComponent.tStop = None
@@ -877,46 +891,13 @@ for thisLoopMaxDigitSpanFind in LoopMaxDigitSpanFind:
         
         # --- Run Routine "DSDisplayLetter" ---
         routineForceEnded = not continueRoutine
-        while continueRoutine and routineTimer.getTime() < 1.0:
+        while continueRoutine:
             # get current time
             t = routineTimer.getTime()
             tThisFlip = win.getFutureFlipTime(clock=routineTimer)
             tThisFlipGlobal = win.getFutureFlipTime(clock=None)
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
-            
-            # *DisplayedItem* updates
-            
-            # if DisplayedItem is starting this frame...
-            if DisplayedItem.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-                # keep track of start time/frame for later
-                DisplayedItem.frameNStart = frameN  # exact frame index
-                DisplayedItem.tStart = t  # local t and not account for scr refresh
-                DisplayedItem.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(DisplayedItem, 'tStartRefresh')  # time at next scr refresh
-                # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'DisplayedItem.started')
-                # update status
-                DisplayedItem.status = STARTED
-                DisplayedItem.setAutoDraw(True)
-            
-            # if DisplayedItem is active this frame...
-            if DisplayedItem.status == STARTED:
-                # update params
-                pass
-            
-            # if DisplayedItem is stopping this frame...
-            if DisplayedItem.status == STARTED:
-                # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > DisplayedItem.tStartRefresh + 1-frameTolerance:
-                    # keep track of stop time/frame for later
-                    DisplayedItem.tStop = t  # not accounting for scr refresh
-                    DisplayedItem.frameNStop = frameN  # exact frame index
-                    # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'DisplayedItem.stopped')
-                    # update status
-                    DisplayedItem.status = FINISHED
-                    DisplayedItem.setAutoDraw(False)
             
             # check for quit (typically the Esc key)
             if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -942,17 +923,17 @@ for thisLoopMaxDigitSpanFind in LoopMaxDigitSpanFind:
         for thisComponent in DSDisplayLetterComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        # using non-slip timing so subtract the expected duration of this Routine (unless ended on request)
-        if routineForceEnded:
-            routineTimer.reset()
-        else:
-            routineTimer.addTime(-1.000000)
+        # the Routine "DSDisplayLetter" was not non-slip safe, so reset the non-slip timer
+        routineTimer.reset()
         
         # --- Prepare to start Routine "FocusCross" ---
         continueRoutine = True
         # update component parameters for each repeat
+        # Run 'Begin Routine' code from EyeTrackingFlagFocusCross
+        time = randint(1, 3)
+        thisexp.adddata("durationCross", time)
         # keep track of which components have finished
-        FocusCrossComponents = [FocusCrossImg]
+        FocusCrossComponents = [Cross]
         for thisComponent in FocusCrossComponents:
             thisComponent.tStart = None
             thisComponent.tStop = None
@@ -975,42 +956,43 @@ for thisLoopMaxDigitSpanFind in LoopMaxDigitSpanFind:
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
             
-            # *FocusCrossImg* updates
+            # *Cross* updates
             
-            # if FocusCrossImg is starting this frame...
-            if FocusCrossImg.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if Cross is starting this frame...
+            if Cross.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                FocusCrossImg.frameNStart = frameN  # exact frame index
-                FocusCrossImg.tStart = t  # local t and not account for scr refresh
-                FocusCrossImg.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(FocusCrossImg, 'tStartRefresh')  # time at next scr refresh
+                Cross.frameNStart = frameN  # exact frame index
+                Cross.tStart = t  # local t and not account for scr refresh
+                Cross.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(Cross, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'FocusCrossImg.started')
+                thisExp.timestampOnFlip(win, 'Cross.started')
                 # update status
-                FocusCrossImg.status = STARTED
-                FocusCrossImg.setAutoDraw(True)
+                Cross.status = STARTED
+                Cross.setAutoDraw(True)
             
-            # if FocusCrossImg is active this frame...
-            if FocusCrossImg.status == STARTED:
+            # if Cross is active this frame...
+            if Cross.status == STARTED:
                 # update params
                 pass
             
-            # if FocusCrossImg is stopping this frame...
-            if FocusCrossImg.status == STARTED:
+            # if Cross is stopping this frame...
+            if Cross.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > FocusCrossImg.tStartRefresh + 1-frameTolerance:
+                if tThisFlipGlobal > Cross.tStartRefresh + 1-frameTolerance:
                     # keep track of stop time/frame for later
-                    FocusCrossImg.tStop = t  # not accounting for scr refresh
-                    FocusCrossImg.frameNStop = frameN  # exact frame index
+                    Cross.tStop = t  # not accounting for scr refresh
+                    Cross.frameNStop = frameN  # exact frame index
                     # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'FocusCrossImg.stopped')
+                    thisExp.timestampOnFlip(win, 'Cross.stopped')
                     # update status
-                    FocusCrossImg.status = FINISHED
-                    FocusCrossImg.setAutoDraw(False)
+                    Cross.status = FINISHED
+                    Cross.setAutoDraw(False)
             # Run 'Each Frame' code from EyeTrackingFlagFocusCross
-            if t == FocusCrossImg.tStart:
+            
+            if t == Cross.tStart:
                 el_tracker.sendMessage('fxon')
-            elif t == FocusCrossImg.tStop:
+            elif t == Cross.tStop:
                 el_tracker.sendMessage('fxoff')
             
             # check for quit (typically the Esc key)
@@ -1325,9 +1307,11 @@ for thisLoopMaxDigitSpanFind in LoopMaxDigitSpanFind:
     # --- Prepare to start Routine "DSScala" ---
     continueRoutine = True
     # update component parameters for each repeat
-    Slider_Respone_Certainty.reset()
+    DSSalaResponse.keys = []
+    DSSalaResponse.rt = []
+    _DSSalaResponse_allKeys = []
     # keep track of which components have finished
-    DSScalaComponents = [DSTextScala, Slider_Respone_Certainty]
+    DSScalaComponents = [DSTextScala, DSSalaResponse]
     for thisComponent in DSScalaComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -1369,35 +1353,39 @@ for thisLoopMaxDigitSpanFind in LoopMaxDigitSpanFind:
         if DSTextScala.status == STARTED:
             # update params
             pass
-        
-        # *Slider_Respone_Certainty* updates
-        
-        # if Slider_Respone_Certainty is starting this frame...
-        if Slider_Respone_Certainty.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            Slider_Respone_Certainty.frameNStart = frameN  # exact frame index
-            Slider_Respone_Certainty.tStart = t  # local t and not account for scr refresh
-            Slider_Respone_Certainty.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(Slider_Respone_Certainty, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'Slider_Respone_Certainty.started')
-            # update status
-            Slider_Respone_Certainty.status = STARTED
-            Slider_Respone_Certainty.setAutoDraw(True)
-        
-        # if Slider_Respone_Certainty is active this frame...
-        if Slider_Respone_Certainty.status == STARTED:
-            # update params
-            Slider_Respone_Certainty.setSize((1.0, 0.1), log=False)
-        
-        # Check Slider_Respone_Certainty for response to end routine
-        if Slider_Respone_Certainty.getRating() is not None and Slider_Respone_Certainty.status == STARTED:
-            continueRoutine = False
         # Run 'Each Frame' code from DSCodeFlagScala
-        if t == DSTextScala.tStart:
+        if t == DSSalaResponse.tStart:
             el_tracker.sendMessage('DTDSResponseon')
-        elif t == DSTextScala.tStop:
+        elif t == DSSalaResponse.tStop:
             el_tracker.sendMessage('DTDSResponseoff')
+        
+        # *DSSalaResponse* updates
+        waitOnFlip = False
+        
+        # if DSSalaResponse is starting this frame...
+        if DSSalaResponse.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            DSSalaResponse.frameNStart = frameN  # exact frame index
+            DSSalaResponse.tStart = t  # local t and not account for scr refresh
+            DSSalaResponse.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(DSSalaResponse, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'DSSalaResponse.started')
+            # update status
+            DSSalaResponse.status = STARTED
+            # keyboard checking is just starting
+            waitOnFlip = True
+            win.callOnFlip(DSSalaResponse.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(DSSalaResponse.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if DSSalaResponse.status == STARTED and not waitOnFlip:
+            theseKeys = DSSalaResponse.getKeys(keyList=['1','2','3','4'], waitRelease=False)
+            _DSSalaResponse_allKeys.extend(theseKeys)
+            if len(_DSSalaResponse_allKeys):
+                DSSalaResponse.keys = _DSSalaResponse_allKeys[-1].name  # just the last key pressed
+                DSSalaResponse.rt = _DSSalaResponse_allKeys[-1].rt
+                DSSalaResponse.duration = _DSSalaResponse_allKeys[-1].duration
+                # a response ends the routine
+                continueRoutine = False
         
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -1423,8 +1411,13 @@ for thisLoopMaxDigitSpanFind in LoopMaxDigitSpanFind:
     for thisComponent in DSScalaComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    LoopMaxDigitSpanFind.addData('Slider_Respone_Certainty.response', Slider_Respone_Certainty.getRating())
-    LoopMaxDigitSpanFind.addData('Slider_Respone_Certainty.rt', Slider_Respone_Certainty.getRT())
+    # check responses
+    if DSSalaResponse.keys in ['', [], None]:  # No response was made
+        DSSalaResponse.keys = None
+    LoopMaxDigitSpanFind.addData('DSSalaResponse.keys',DSSalaResponse.keys)
+    if DSSalaResponse.keys != None:  # we had a response
+        LoopMaxDigitSpanFind.addData('DSSalaResponse.rt', DSSalaResponse.rt)
+        LoopMaxDigitSpanFind.addData('DSSalaResponse.duration', DSSalaResponse.duration)
     # the Routine "DSScala" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
@@ -1445,7 +1438,6 @@ for thisLoopMaxDigitSpanFind in LoopMaxDigitSpanFind:
                 #--> caps at max digitSpan
                 #saves the CurrentDigitChecking as a file for later useage 
                 file.write(str(CurrentDigitChecking))
-                file.close()
                 
                 LoopMaxDigitSpanFind.finished = True
         else: 
@@ -1453,7 +1445,6 @@ for thisLoopMaxDigitSpanFind in LoopMaxDigitSpanFind:
            
             #saves the CurrentDigitChecking as a file for later useage 
             file.write(str(CurrentDigitChecking))
-            file.close()
             
             LoopMaxDigitSpanFind.finished = True
     # keep track of which components have finished
@@ -1517,8 +1508,13 @@ continueRoutine = True
 KeyDigitSpanExplainExample.keys = []
 KeyDigitSpanExplainExample.rt = []
 _KeyDigitSpanExplainExample_allKeys = []
+# Run 'Begin Routine' code from code_2
+filedata = file.read(1)
+file.close()
+TextExplain.reset()
+TextExplain.setText('In diesem Teil werden Ihnen Zahlenfolgen präsentiert. Ihre Aufgabe ist es, sich diese Zahlen zu merken. Anschließend geben Sie die Zahlen in der richtigen Reihenfolge mündlich an den Versuchsleiter wieder. Danach bewerten Sie auf einer Skala von 1 bis 4, wie sicher Sie sich bei Ihrer Antwort waren (1 = "gar nicht sicher", 4 = "sehr sicher"). Für die Skala verwenden Sie bitte die Knöpfe vor Ihnen. Nun werden ein paar Übungsdurchgänge folgen, in denen Sie sich mit der Aufgabe vertraut machen können. \n\n \n\nDrücken Sie einen beliebigen Knopf, um fortzufahren. ')
 # keep track of which components have finished
-DSExplaineExampleComponents = [TextDigtSpanExample, KeyDigitSpanExplainExample]
+DSExplaineExampleComponents = [KeyDigitSpanExplainExample, TextExplain]
 for thisComponent in DSExplaineExampleComponents:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -1540,26 +1536,6 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
-    # *TextDigtSpanExample* updates
-    
-    # if TextDigtSpanExample is starting this frame...
-    if TextDigtSpanExample.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-        # keep track of start time/frame for later
-        TextDigtSpanExample.frameNStart = frameN  # exact frame index
-        TextDigtSpanExample.tStart = t  # local t and not account for scr refresh
-        TextDigtSpanExample.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(TextDigtSpanExample, 'tStartRefresh')  # time at next scr refresh
-        # add timestamp to datafile
-        thisExp.timestampOnFlip(win, 'TextDigtSpanExample.started')
-        # update status
-        TextDigtSpanExample.status = STARTED
-        TextDigtSpanExample.setAutoDraw(True)
-    
-    # if TextDigtSpanExample is active this frame...
-    if TextDigtSpanExample.status == STARTED:
-        # update params
-        pass
     
     # *KeyDigitSpanExplainExample* updates
     waitOnFlip = False
@@ -1588,6 +1564,26 @@ while continueRoutine:
             KeyDigitSpanExplainExample.duration = _KeyDigitSpanExplainExample_allKeys[-1].duration
             # a response ends the routine
             continueRoutine = False
+    
+    # *TextExplain* updates
+    
+    # if TextExplain is starting this frame...
+    if TextExplain.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        TextExplain.frameNStart = frameN  # exact frame index
+        TextExplain.tStart = t  # local t and not account for scr refresh
+        TextExplain.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(TextExplain, 'tStartRefresh')  # time at next scr refresh
+        # add timestamp to datafile
+        thisExp.timestampOnFlip(win, 'TextExplain.started')
+        # update status
+        TextExplain.status = STARTED
+        TextExplain.setAutoDraw(True)
+    
+    # if TextExplain is active this frame...
+    if TextExplain.status == STARTED:
+        # update params
+        pass
     
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -1646,7 +1642,7 @@ for thisLoopExplainDigitSpanOuter in LoopExplainDigitSpanOuter:
     # set up handler to look after randomisation of conditions etc
     LoopExplainDigitSpan = data.TrialHandler(nReps=9.0, method='random', 
         extraInfo=expInfo, originPath=-1,
-        trialList=data.importConditions('Conditions/Conditions_Digits.xlsx'),
+        trialList=data.importConditions('Conditions/Conditions.xlsx'),
         seed=None, name='LoopExplainDigitSpan')
     thisExp.addLoop(LoopExplainDigitSpan)  # add the loop to the experiment
     thisLoopExplainDigitSpan = LoopExplainDigitSpan.trialList[0]  # so we can initialise stimuli with some values
@@ -1755,8 +1751,11 @@ for thisLoopExplainDigitSpanOuter in LoopExplainDigitSpanOuter:
         # --- Prepare to start Routine "FocusCross" ---
         continueRoutine = True
         # update component parameters for each repeat
+        # Run 'Begin Routine' code from EyeTrackingFlagFocusCross
+        time = randint(1, 3)
+        thisexp.adddata("durationCross", time)
         # keep track of which components have finished
-        FocusCrossComponents = [FocusCrossImg]
+        FocusCrossComponents = [Cross]
         for thisComponent in FocusCrossComponents:
             thisComponent.tStart = None
             thisComponent.tStop = None
@@ -1779,42 +1778,43 @@ for thisLoopExplainDigitSpanOuter in LoopExplainDigitSpanOuter:
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
             
-            # *FocusCrossImg* updates
+            # *Cross* updates
             
-            # if FocusCrossImg is starting this frame...
-            if FocusCrossImg.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if Cross is starting this frame...
+            if Cross.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                FocusCrossImg.frameNStart = frameN  # exact frame index
-                FocusCrossImg.tStart = t  # local t and not account for scr refresh
-                FocusCrossImg.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(FocusCrossImg, 'tStartRefresh')  # time at next scr refresh
+                Cross.frameNStart = frameN  # exact frame index
+                Cross.tStart = t  # local t and not account for scr refresh
+                Cross.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(Cross, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'FocusCrossImg.started')
+                thisExp.timestampOnFlip(win, 'Cross.started')
                 # update status
-                FocusCrossImg.status = STARTED
-                FocusCrossImg.setAutoDraw(True)
+                Cross.status = STARTED
+                Cross.setAutoDraw(True)
             
-            # if FocusCrossImg is active this frame...
-            if FocusCrossImg.status == STARTED:
+            # if Cross is active this frame...
+            if Cross.status == STARTED:
                 # update params
                 pass
             
-            # if FocusCrossImg is stopping this frame...
-            if FocusCrossImg.status == STARTED:
+            # if Cross is stopping this frame...
+            if Cross.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > FocusCrossImg.tStartRefresh + 1-frameTolerance:
+                if tThisFlipGlobal > Cross.tStartRefresh + 1-frameTolerance:
                     # keep track of stop time/frame for later
-                    FocusCrossImg.tStop = t  # not accounting for scr refresh
-                    FocusCrossImg.frameNStop = frameN  # exact frame index
+                    Cross.tStop = t  # not accounting for scr refresh
+                    Cross.frameNStop = frameN  # exact frame index
                     # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'FocusCrossImg.stopped')
+                    thisExp.timestampOnFlip(win, 'Cross.stopped')
                     # update status
-                    FocusCrossImg.status = FINISHED
-                    FocusCrossImg.setAutoDraw(False)
+                    Cross.status = FINISHED
+                    Cross.setAutoDraw(False)
             # Run 'Each Frame' code from EyeTrackingFlagFocusCross
-            if t == FocusCrossImg.tStart:
+            
+            if t == Cross.tStart:
                 el_tracker.sendMessage('fxon')
-            elif t == FocusCrossImg.tStop:
+            elif t == Cross.tStop:
                 el_tracker.sendMessage('fxoff')
             
             # check for quit (typically the Esc key)
@@ -2031,9 +2031,11 @@ for thisLoopExplainDigitSpanOuter in LoopExplainDigitSpanOuter:
     # --- Prepare to start Routine "DSScala" ---
     continueRoutine = True
     # update component parameters for each repeat
-    Slider_Respone_Certainty.reset()
+    DSSalaResponse.keys = []
+    DSSalaResponse.rt = []
+    _DSSalaResponse_allKeys = []
     # keep track of which components have finished
-    DSScalaComponents = [DSTextScala, Slider_Respone_Certainty]
+    DSScalaComponents = [DSTextScala, DSSalaResponse]
     for thisComponent in DSScalaComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -2075,35 +2077,39 @@ for thisLoopExplainDigitSpanOuter in LoopExplainDigitSpanOuter:
         if DSTextScala.status == STARTED:
             # update params
             pass
-        
-        # *Slider_Respone_Certainty* updates
-        
-        # if Slider_Respone_Certainty is starting this frame...
-        if Slider_Respone_Certainty.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            Slider_Respone_Certainty.frameNStart = frameN  # exact frame index
-            Slider_Respone_Certainty.tStart = t  # local t and not account for scr refresh
-            Slider_Respone_Certainty.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(Slider_Respone_Certainty, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'Slider_Respone_Certainty.started')
-            # update status
-            Slider_Respone_Certainty.status = STARTED
-            Slider_Respone_Certainty.setAutoDraw(True)
-        
-        # if Slider_Respone_Certainty is active this frame...
-        if Slider_Respone_Certainty.status == STARTED:
-            # update params
-            Slider_Respone_Certainty.setSize((1.0, 0.1), log=False)
-        
-        # Check Slider_Respone_Certainty for response to end routine
-        if Slider_Respone_Certainty.getRating() is not None and Slider_Respone_Certainty.status == STARTED:
-            continueRoutine = False
         # Run 'Each Frame' code from DSCodeFlagScala
-        if t == DSTextScala.tStart:
+        if t == DSSalaResponse.tStart:
             el_tracker.sendMessage('DTDSResponseon')
-        elif t == DSTextScala.tStop:
+        elif t == DSSalaResponse.tStop:
             el_tracker.sendMessage('DTDSResponseoff')
+        
+        # *DSSalaResponse* updates
+        waitOnFlip = False
+        
+        # if DSSalaResponse is starting this frame...
+        if DSSalaResponse.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            DSSalaResponse.frameNStart = frameN  # exact frame index
+            DSSalaResponse.tStart = t  # local t and not account for scr refresh
+            DSSalaResponse.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(DSSalaResponse, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'DSSalaResponse.started')
+            # update status
+            DSSalaResponse.status = STARTED
+            # keyboard checking is just starting
+            waitOnFlip = True
+            win.callOnFlip(DSSalaResponse.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(DSSalaResponse.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if DSSalaResponse.status == STARTED and not waitOnFlip:
+            theseKeys = DSSalaResponse.getKeys(keyList=['1','2','3','4'], waitRelease=False)
+            _DSSalaResponse_allKeys.extend(theseKeys)
+            if len(_DSSalaResponse_allKeys):
+                DSSalaResponse.keys = _DSSalaResponse_allKeys[-1].name  # just the last key pressed
+                DSSalaResponse.rt = _DSSalaResponse_allKeys[-1].rt
+                DSSalaResponse.duration = _DSSalaResponse_allKeys[-1].duration
+                # a response ends the routine
+                continueRoutine = False
         
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -2129,8 +2135,13 @@ for thisLoopExplainDigitSpanOuter in LoopExplainDigitSpanOuter:
     for thisComponent in DSScalaComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    LoopExplainDigitSpanOuter.addData('Slider_Respone_Certainty.response', Slider_Respone_Certainty.getRating())
-    LoopExplainDigitSpanOuter.addData('Slider_Respone_Certainty.rt', Slider_Respone_Certainty.getRT())
+    # check responses
+    if DSSalaResponse.keys in ['', [], None]:  # No response was made
+        DSSalaResponse.keys = None
+    LoopExplainDigitSpanOuter.addData('DSSalaResponse.keys',DSSalaResponse.keys)
+    if DSSalaResponse.keys != None:  # we had a response
+        LoopExplainDigitSpanOuter.addData('DSSalaResponse.rt', DSSalaResponse.rt)
+        LoopExplainDigitSpanOuter.addData('DSSalaResponse.duration', DSSalaResponse.duration)
     # the Routine "DSScala" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
 # completed 3.0 repeats of 'LoopExplainDigitSpanOuter'
@@ -2327,7 +2338,7 @@ for thisDSLoopTrailsOuter in DSLoopTrailsOuter:
     # set up handler to look after randomisation of conditions etc
     DSLoopTrailsInner = data.TrialHandler(nReps=1.0, method='sequential', 
         extraInfo=expInfo, originPath=-1,
-        trialList=data.importConditions('Conditions/Conditions_Digits.xlsx'),
+        trialList=data.importConditions('Conditions/Conditions.xlsx'),
         seed=None, name='DSLoopTrailsInner')
     thisExp.addLoop(DSLoopTrailsInner)  # add the loop to the experiment
     thisDSLoopTrailsInner = DSLoopTrailsInner.trialList[0]  # so we can initialise stimuli with some values
@@ -2441,8 +2452,11 @@ for thisDSLoopTrailsOuter in DSLoopTrailsOuter:
         # --- Prepare to start Routine "FocusCross" ---
         continueRoutine = True
         # update component parameters for each repeat
+        # Run 'Begin Routine' code from EyeTrackingFlagFocusCross
+        time = randint(1, 3)
+        thisexp.adddata("durationCross", time)
         # keep track of which components have finished
-        FocusCrossComponents = [FocusCrossImg]
+        FocusCrossComponents = [Cross]
         for thisComponent in FocusCrossComponents:
             thisComponent.tStart = None
             thisComponent.tStop = None
@@ -2465,42 +2479,43 @@ for thisDSLoopTrailsOuter in DSLoopTrailsOuter:
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
             
-            # *FocusCrossImg* updates
+            # *Cross* updates
             
-            # if FocusCrossImg is starting this frame...
-            if FocusCrossImg.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if Cross is starting this frame...
+            if Cross.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                FocusCrossImg.frameNStart = frameN  # exact frame index
-                FocusCrossImg.tStart = t  # local t and not account for scr refresh
-                FocusCrossImg.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(FocusCrossImg, 'tStartRefresh')  # time at next scr refresh
+                Cross.frameNStart = frameN  # exact frame index
+                Cross.tStart = t  # local t and not account for scr refresh
+                Cross.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(Cross, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'FocusCrossImg.started')
+                thisExp.timestampOnFlip(win, 'Cross.started')
                 # update status
-                FocusCrossImg.status = STARTED
-                FocusCrossImg.setAutoDraw(True)
+                Cross.status = STARTED
+                Cross.setAutoDraw(True)
             
-            # if FocusCrossImg is active this frame...
-            if FocusCrossImg.status == STARTED:
+            # if Cross is active this frame...
+            if Cross.status == STARTED:
                 # update params
                 pass
             
-            # if FocusCrossImg is stopping this frame...
-            if FocusCrossImg.status == STARTED:
+            # if Cross is stopping this frame...
+            if Cross.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > FocusCrossImg.tStartRefresh + 1-frameTolerance:
+                if tThisFlipGlobal > Cross.tStartRefresh + 1-frameTolerance:
                     # keep track of stop time/frame for later
-                    FocusCrossImg.tStop = t  # not accounting for scr refresh
-                    FocusCrossImg.frameNStop = frameN  # exact frame index
+                    Cross.tStop = t  # not accounting for scr refresh
+                    Cross.frameNStop = frameN  # exact frame index
                     # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'FocusCrossImg.stopped')
+                    thisExp.timestampOnFlip(win, 'Cross.stopped')
                     # update status
-                    FocusCrossImg.status = FINISHED
-                    FocusCrossImg.setAutoDraw(False)
+                    Cross.status = FINISHED
+                    Cross.setAutoDraw(False)
             # Run 'Each Frame' code from EyeTrackingFlagFocusCross
-            if t == FocusCrossImg.tStart:
+            
+            if t == Cross.tStart:
                 el_tracker.sendMessage('fxon')
-            elif t == FocusCrossImg.tStop:
+            elif t == Cross.tStop:
                 el_tracker.sendMessage('fxoff')
             
             # check for quit (typically the Esc key)
@@ -2717,9 +2732,11 @@ for thisDSLoopTrailsOuter in DSLoopTrailsOuter:
     # --- Prepare to start Routine "DSScala" ---
     continueRoutine = True
     # update component parameters for each repeat
-    Slider_Respone_Certainty.reset()
+    DSSalaResponse.keys = []
+    DSSalaResponse.rt = []
+    _DSSalaResponse_allKeys = []
     # keep track of which components have finished
-    DSScalaComponents = [DSTextScala, Slider_Respone_Certainty]
+    DSScalaComponents = [DSTextScala, DSSalaResponse]
     for thisComponent in DSScalaComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -2761,35 +2778,39 @@ for thisDSLoopTrailsOuter in DSLoopTrailsOuter:
         if DSTextScala.status == STARTED:
             # update params
             pass
-        
-        # *Slider_Respone_Certainty* updates
-        
-        # if Slider_Respone_Certainty is starting this frame...
-        if Slider_Respone_Certainty.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-            # keep track of start time/frame for later
-            Slider_Respone_Certainty.frameNStart = frameN  # exact frame index
-            Slider_Respone_Certainty.tStart = t  # local t and not account for scr refresh
-            Slider_Respone_Certainty.tStartRefresh = tThisFlipGlobal  # on global time
-            win.timeOnFlip(Slider_Respone_Certainty, 'tStartRefresh')  # time at next scr refresh
-            # add timestamp to datafile
-            thisExp.timestampOnFlip(win, 'Slider_Respone_Certainty.started')
-            # update status
-            Slider_Respone_Certainty.status = STARTED
-            Slider_Respone_Certainty.setAutoDraw(True)
-        
-        # if Slider_Respone_Certainty is active this frame...
-        if Slider_Respone_Certainty.status == STARTED:
-            # update params
-            Slider_Respone_Certainty.setSize((1.0, 0.1), log=False)
-        
-        # Check Slider_Respone_Certainty for response to end routine
-        if Slider_Respone_Certainty.getRating() is not None and Slider_Respone_Certainty.status == STARTED:
-            continueRoutine = False
         # Run 'Each Frame' code from DSCodeFlagScala
-        if t == DSTextScala.tStart:
+        if t == DSSalaResponse.tStart:
             el_tracker.sendMessage('DTDSResponseon')
-        elif t == DSTextScala.tStop:
+        elif t == DSSalaResponse.tStop:
             el_tracker.sendMessage('DTDSResponseoff')
+        
+        # *DSSalaResponse* updates
+        waitOnFlip = False
+        
+        # if DSSalaResponse is starting this frame...
+        if DSSalaResponse.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            DSSalaResponse.frameNStart = frameN  # exact frame index
+            DSSalaResponse.tStart = t  # local t and not account for scr refresh
+            DSSalaResponse.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(DSSalaResponse, 'tStartRefresh')  # time at next scr refresh
+            # add timestamp to datafile
+            thisExp.timestampOnFlip(win, 'DSSalaResponse.started')
+            # update status
+            DSSalaResponse.status = STARTED
+            # keyboard checking is just starting
+            waitOnFlip = True
+            win.callOnFlip(DSSalaResponse.clock.reset)  # t=0 on next screen flip
+            win.callOnFlip(DSSalaResponse.clearEvents, eventType='keyboard')  # clear events on next screen flip
+        if DSSalaResponse.status == STARTED and not waitOnFlip:
+            theseKeys = DSSalaResponse.getKeys(keyList=['1','2','3','4'], waitRelease=False)
+            _DSSalaResponse_allKeys.extend(theseKeys)
+            if len(_DSSalaResponse_allKeys):
+                DSSalaResponse.keys = _DSSalaResponse_allKeys[-1].name  # just the last key pressed
+                DSSalaResponse.rt = _DSSalaResponse_allKeys[-1].rt
+                DSSalaResponse.duration = _DSSalaResponse_allKeys[-1].duration
+                # a response ends the routine
+                continueRoutine = False
         
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
@@ -2815,8 +2836,13 @@ for thisDSLoopTrailsOuter in DSLoopTrailsOuter:
     for thisComponent in DSScalaComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    DSLoopTrailsOuter.addData('Slider_Respone_Certainty.response', Slider_Respone_Certainty.getRating())
-    DSLoopTrailsOuter.addData('Slider_Respone_Certainty.rt', Slider_Respone_Certainty.getRT())
+    # check responses
+    if DSSalaResponse.keys in ['', [], None]:  # No response was made
+        DSSalaResponse.keys = None
+    DSLoopTrailsOuter.addData('DSSalaResponse.keys',DSSalaResponse.keys)
+    if DSSalaResponse.keys != None:  # we had a response
+        DSLoopTrailsOuter.addData('DSSalaResponse.rt', DSSalaResponse.rt)
+        DSLoopTrailsOuter.addData('DSSalaResponse.duration', DSSalaResponse.duration)
     # the Routine "DSScala" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     thisExp.nextEntry()
@@ -2997,7 +3023,7 @@ routineTimer.reset()
 # set up handler to look after randomisation of conditions etc
 NBLoopExplain = data.TrialHandler(nReps=9.0, method='random', 
     extraInfo=expInfo, originPath=-1,
-    trialList=data.importConditions('Conditions/Conditions_Digits.xlsx'),
+    trialList=data.importConditions('Conditions/Conditions.xlsx'),
     seed=None, name='NBLoopExplain')
 thisExp.addLoop(NBLoopExplain)  # add the loop to the experiment
 thisNBLoopExplain = NBLoopExplain.trialList[0]  # so we can initialise stimuli with some values
@@ -3339,7 +3365,7 @@ routineTimer.reset()
 # set up handler to look after randomisation of conditions etc
 NBLoopFull = data.TrialHandler(nReps=20.0, method='random', 
     extraInfo=expInfo, originPath=-1,
-    trialList=data.importConditions('Conditions/Conditions_Digits.xlsx'),
+    trialList=data.importConditions('Conditions/Conditions.xlsx'),
     seed=None, name='NBLoopFull')
 thisExp.addLoop(NBLoopFull)  # add the loop to the experiment
 thisNBLoopFull = NBLoopFull.trialList[0]  # so we can initialise stimuli with some values
@@ -3823,7 +3849,7 @@ for thisDT_Full_Loop in DT_Full_Loop:
     # set up handler to look after randomisation of conditions etc
     DT_DS_InnerLoop = data.TrialHandler(nReps=9.0, method='random', 
         extraInfo=expInfo, originPath=-1,
-        trialList=data.importConditions('Conditions/Conditions_Digits.xlsx'),
+        trialList=data.importConditions('Conditions/Conditions.xlsx'),
         seed=None, name='DT_DS_InnerLoop')
     thisExp.addLoop(DT_DS_InnerLoop)  # add the loop to the experiment
     thisDT_DS_InnerLoop = DT_DS_InnerLoop.trialList[0]  # so we can initialise stimuli with some values
@@ -3937,8 +3963,11 @@ for thisDT_Full_Loop in DT_Full_Loop:
         # --- Prepare to start Routine "FocusCross" ---
         continueRoutine = True
         # update component parameters for each repeat
+        # Run 'Begin Routine' code from EyeTrackingFlagFocusCross
+        time = randint(1, 3)
+        thisexp.adddata("durationCross", time)
         # keep track of which components have finished
-        FocusCrossComponents = [FocusCrossImg]
+        FocusCrossComponents = [Cross]
         for thisComponent in FocusCrossComponents:
             thisComponent.tStart = None
             thisComponent.tStop = None
@@ -3961,42 +3990,43 @@ for thisDT_Full_Loop in DT_Full_Loop:
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
             
-            # *FocusCrossImg* updates
+            # *Cross* updates
             
-            # if FocusCrossImg is starting this frame...
-            if FocusCrossImg.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if Cross is starting this frame...
+            if Cross.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                FocusCrossImg.frameNStart = frameN  # exact frame index
-                FocusCrossImg.tStart = t  # local t and not account for scr refresh
-                FocusCrossImg.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(FocusCrossImg, 'tStartRefresh')  # time at next scr refresh
+                Cross.frameNStart = frameN  # exact frame index
+                Cross.tStart = t  # local t and not account for scr refresh
+                Cross.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(Cross, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'FocusCrossImg.started')
+                thisExp.timestampOnFlip(win, 'Cross.started')
                 # update status
-                FocusCrossImg.status = STARTED
-                FocusCrossImg.setAutoDraw(True)
+                Cross.status = STARTED
+                Cross.setAutoDraw(True)
             
-            # if FocusCrossImg is active this frame...
-            if FocusCrossImg.status == STARTED:
+            # if Cross is active this frame...
+            if Cross.status == STARTED:
                 # update params
                 pass
             
-            # if FocusCrossImg is stopping this frame...
-            if FocusCrossImg.status == STARTED:
+            # if Cross is stopping this frame...
+            if Cross.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > FocusCrossImg.tStartRefresh + 1-frameTolerance:
+                if tThisFlipGlobal > Cross.tStartRefresh + 1-frameTolerance:
                     # keep track of stop time/frame for later
-                    FocusCrossImg.tStop = t  # not accounting for scr refresh
-                    FocusCrossImg.frameNStop = frameN  # exact frame index
+                    Cross.tStop = t  # not accounting for scr refresh
+                    Cross.frameNStop = frameN  # exact frame index
                     # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'FocusCrossImg.stopped')
+                    thisExp.timestampOnFlip(win, 'Cross.stopped')
                     # update status
-                    FocusCrossImg.status = FINISHED
-                    FocusCrossImg.setAutoDraw(False)
+                    Cross.status = FINISHED
+                    Cross.setAutoDraw(False)
             # Run 'Each Frame' code from EyeTrackingFlagFocusCross
-            if t == FocusCrossImg.tStart:
+            
+            if t == Cross.tStart:
                 el_tracker.sendMessage('fxon')
-            elif t == FocusCrossImg.tStop:
+            elif t == Cross.tStop:
                 el_tracker.sendMessage('fxoff')
             
             # check for quit (typically the Esc key)
@@ -4097,7 +4127,7 @@ for thisDT_Full_Loop in DT_Full_Loop:
     # set up handler to look after randomisation of conditions etc
     DT_NB_NBackLoop = data.TrialHandler(nReps=5.0, method='random', 
         extraInfo=expInfo, originPath=-1,
-        trialList=data.importConditions('Conditions/Conditions_Digits.xlsx'),
+        trialList=data.importConditions('Conditions/Conditions.xlsx'),
         seed=None, name='DT_NB_NBackLoop')
     thisExp.addLoop(DT_NB_NBackLoop)  # add the loop to the experiment
     thisDT_NB_NBackLoop = DT_NB_NBackLoop.trialList[0]  # so we can initialise stimuli with some values

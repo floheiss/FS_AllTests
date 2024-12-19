@@ -68,31 +68,6 @@
   </Settings>
   <Routines>
     <Routine name="Welcome">
-      <TextComponent name="WelcomeText" plugin="None">
-        <Param val="white" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
-        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="WelcomeText" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Willkommen bei unserem Experiment &amp;#10;&amp;#10;Danke für die Teilnahme &amp;#10;&amp;#10;bla bla bla &amp;#10;&amp;#10;Drücken Sie Space um weiter zu kommen " valType="str" updates="constant" name="text"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
       <KeyboardComponent name="Next_Welcome" plugin="None">
         <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
@@ -113,7 +88,7 @@
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
       <CodeComponent name="Python_Eyetracking_setUp" plugin="None">
-        <Param val="# Imports&amp;#10;import pylink&amp;#10;import platform&amp;#10;from EyeLinkCoreGraphicsPsychoPy import EyeLinkCoreGraphicsPsychoPy&amp;#10;from string import ascii_letters, digits&amp;#10;import eyetracking&amp;#10;# Set to False if you want to use eyetracking&amp;#10;dummy_mode = True&amp;#10;# Set name for data folder for EDFs&amp;#10;eyetracker_data_folder = eyetracking.create_eyetracking_folder()&amp;#10;# Creates by default a folder with the name &quot;eyetracker data&quot;" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="# Imports&amp;#10;import pylink&amp;#10;import platform&amp;#10;from EyeLinkCoreGraphicsPsychoPy import EyeLinkCoreGraphicsPsychoPy&amp;#10;from string import ascii_letters, digits&amp;#10;import eyetracking&amp;#10;&amp;#10;# Set to False if you want to use eyetracking&amp;#10;dummy_mode = True&amp;#10;# Set name for data folder for EDFs&amp;#10;eyetracker_data_folder = eyetracking.create_eyetracking_folder()&amp;#10;# Creates by default a folder with the name &quot;eyetracker data&quot;&amp;#10;&amp;#10;&amp;#10;from psychopy import sound" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="import * as pylink from 'pylink';&amp;#10;import * as platform from 'platform';&amp;#10;import {EyeLinkCoreGraphicsPsychoPy} from 'EyeLinkCoreGraphicsPsychoPy';&amp;#10;import {ascii_letters, digits} from 'string';&amp;#10;import * as eyetracking from 'eyetracking';&amp;#10;dummy_mode = true;&amp;#10;eyetracker_data_folder = eyetracking.create_eyetracking_folder();&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="# Variable for naming EDF&amp;#10;edf_fname = expInfo['participant']&amp;#10;# States that EDF name should be the same as the behavioral experiment&amp;#10;# Check if EDF-name is valid&amp;#10;eyetracking.edf_name_check(edf_fname)&amp;#10;# =&gt; should not be longer than 8 characters and only contain letters, digits and&amp;#10;# underscores&amp;#10;# Connects host PC and stimulus PC&amp;#10;el_tracker = eyetracking.connect_tracker(dummy_mode)&amp;#10;edf_file = eyetracking.open_edf_file(el_tracker, edf_fname)&amp;#10;eyetracking.configure_tracker(el_tracker, dummy_mode)" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="edf_fname = expInfo[&quot;participant&quot;];&amp;#10;eyetracking.edf_name_check(edf_fname);&amp;#10;el_tracker = eyetracking.connect_tracker(dummy_mode);&amp;#10;edf_file = eyetracking.open_edf_file(el_tracker, edf_fname);&amp;#10;eyetracking.configure_tracker(el_tracker, dummy_mode);&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
@@ -129,45 +104,85 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="Python_Eyetracking_setUp" valType="code" updates="None" name="name"/>
       </CodeComponent>
-    </Routine>
-    <Routine name="FocusCross">
-      <ImageComponent name="FocusCrossImg" plugin="None">
+      <TextboxComponent name="WelcomeText_Box" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
         <Param val="center" valType="str" updates="constant" name="anchor"/>
-        <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
         <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
         <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="Conditions/sailor_void.png" valType="file" updates="constant" name="image"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="WelcomeText_Box" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Willkommen zu unserem Experiment und vielen Dank für Ihre Teilnahme! &amp;#10;&amp;#10;Im Folgenden werden Sie ein paar kognitive Aufgaben lösen.  &amp;#10;&amp;#10;Die Aufgaben werden jeweils vorher kurz erklärt.   &amp;#10;&amp;#10;Ihre Daten werden selbstverständlich anonym erfasst und vertraulich behandelt. " valType="str" updates="constant" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
+    </Routine>
+    <Routine name="FocusCross">
+      <PolygonComponent name="Cross" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="0.6549, 0.6549, 0.6549" valType="color" updates="constant" name="fillColor"/>
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="" valType="str" updates="constant" name="mask"/>
-        <Param val="FocusCrossImg" valType="code" updates="None" name="name"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="lineColor"/>
+        <Param val="1" valType="num" updates="constant" name="lineWidth"/>
+        <Param val="4" valType="int" updates="constant" name="nVertices"/>
+        <Param val="Cross" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(0.5, 0.5)" valType="list" updates="constant" name="size"/>
+        <Param val="cross" valType="str" updates="None" name="shape"/>
+        <Param val="(0.2, 0.2)" valType="list" updates="constant" name="size"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="1" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="128" valType="num" updates="constant" name="texture resolution"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
-      </ImageComponent>
+        <Param val="" valType="list" updates="constant" name="vertices"/>
+      </PolygonComponent>
       <CodeComponent name="EyeTrackingFlagFocusCross" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="time = 2" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="time = 2;&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="time = util.randint(1, 3);&amp;#10;thisexp.adddata(&quot;durationCross&quot;, time);&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="time = randint(1, 3)&amp;#10;thisexp.adddata(&quot;durationCross&quot;, time)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
-        <Param val="if t == FocusCrossImg.tStart:&amp;#10;    el_tracker.sendMessage('fxon')&amp;#10;elif t == FocusCrossImg.tStop:&amp;#10;    el_tracker.sendMessage('fxoff')" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="if ((t === FocusCrossImg.tStart)) {&amp;#10;    el_tracker.sendMessage(&quot;fxon&quot;);&amp;#10;} else {&amp;#10;    if ((t === FocusCrossImg.tStop)) {&amp;#10;        el_tracker.sendMessage(&quot;fxoff&quot;);&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="if t == Cross.tStart:&amp;#10;    el_tracker.sendMessage('FocusCrosson')&amp;#10;elif t == Cross.tStop:&amp;#10;    el_tracker.sendMessage('FocusCrossoff')" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="if ((t === Cross.tStart)) {&amp;#10;    el_tracker.sendMessage(&quot;FocusCrosson&quot;);&amp;#10;} else {&amp;#10;    if ((t === Cross.tStop)) {&amp;#10;        el_tracker.sendMessage(&quot;FocusCrossoff&quot;);&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
@@ -235,12 +250,12 @@
     </Routine>
     <Routine name="DSFindMaxEndOuterLoop">
       <CodeComponent name="CodeEndDigitSpanFindMax" plugin="None">
-        <Param val="file = open(&quot;DigitSpanMax.txt&quot;,&quot;w&quot;)" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="file = open(&quot;DigitSpanMax.txt&quot;, &quot;w&quot;);&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="file = open(&quot;DigitSpanMax.txt&quot;,&quot;w+&quot;)" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="file = open(&quot;DigitSpanMax.txt&quot;, &quot;w+&quot;);&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="if ((NumberOfLoopComplete &gt;= 3)) {&amp;#10;    NumberOfLoopComplete = 0;&amp;#10;    CorrectDigits = [];&amp;#10;    if ((CorrectLoops &gt;= 2)) {&amp;#10;        CorrectLoops = 0;&amp;#10;        CurrentDigitChecking = (CurrentDigitChecking + 1);&amp;#10;        if ((CurrentDigitChecking &gt;= 9)) {&amp;#10;            file.write(CurrentDigitChecking.toString());&amp;#10;            file.close();&amp;#10;            LoopMaxDigitSpanFind.finished = true;&amp;#10;        }&amp;#10;    } else {&amp;#10;        CorrectLoops = 0;&amp;#10;        file.write(CurrentDigitChecking.toString());&amp;#10;        file.close();&amp;#10;        LoopMaxDigitSpanFind.finished = true;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="if(NumberOfLoopComplete &gt;= 3):&amp;#10;    NumberOfLoopComplete = 0&amp;#10;    CorrectDigits = []&amp;#10;    #pls note this is debugging to make progress :)&amp;#10;    if(CorrectLoops &gt;= 2):&amp;#10;        CorrectLoops = 0&amp;#10;        CurrentDigitChecking = CurrentDigitChecking + 1&amp;#10;        #pls note this is debugging to make progress :)&amp;#10;        if CurrentDigitChecking &gt;= 9: &amp;#10;            #ends the loop even if all correct &amp;#10;            #--&gt; caps at max digitSpan&amp;#10;            #saves the CurrentDigitChecking as a file for later useage &amp;#10;            file.write(str(CurrentDigitChecking))&amp;#10;            file.close()&amp;#10;            &amp;#10;            LoopMaxDigitSpanFind.finished = True&amp;#10;    else: &amp;#10;        CorrectLoops = 0&amp;#10;       &amp;#10;        #saves the CurrentDigitChecking as a file for later useage &amp;#10;        file.write(str(CurrentDigitChecking))&amp;#10;        file.close()&amp;#10;        &amp;#10;        LoopMaxDigitSpanFind.finished = True" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="if ((NumberOfLoopComplete &gt;= 3)) {&amp;#10;    NumberOfLoopComplete = 0;&amp;#10;    CorrectDigits = [];&amp;#10;    if ((CorrectLoops &gt;= 2)) {&amp;#10;        CorrectLoops = 0;&amp;#10;        CurrentDigitChecking = (CurrentDigitChecking + 1);&amp;#10;        if ((CurrentDigitChecking &gt;= 9)) {&amp;#10;            file.write(CurrentDigitChecking.toString());&amp;#10;            LoopMaxDigitSpanFind.finished = true;&amp;#10;        }&amp;#10;    } else {&amp;#10;        CorrectLoops = 0;&amp;#10;        file.write(CurrentDigitChecking.toString());&amp;#10;        LoopMaxDigitSpanFind.finished = true;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="if(NumberOfLoopComplete &gt;= 3):&amp;#10;    NumberOfLoopComplete = 0&amp;#10;    CorrectDigits = []&amp;#10;    #pls note this is debugging to make progress :)&amp;#10;    if(CorrectLoops &gt;= 2):&amp;#10;        CorrectLoops = 0&amp;#10;        CurrentDigitChecking = CurrentDigitChecking + 1&amp;#10;        #pls note this is debugging to make progress :)&amp;#10;        if CurrentDigitChecking &gt;= 9: &amp;#10;            #ends the loop even if all correct &amp;#10;            #--&gt; caps at max digitSpan&amp;#10;            #saves the CurrentDigitChecking as a file for later useage &amp;#10;            file.write(str(CurrentDigitChecking))&amp;#10;            &amp;#10;            LoopMaxDigitSpanFind.finished = True&amp;#10;    else: &amp;#10;        CorrectLoops = 0&amp;#10;       &amp;#10;        #saves the CurrentDigitChecking as a file for later useage &amp;#10;        file.write(str(CurrentDigitChecking))&amp;#10;        &amp;#10;        LoopMaxDigitSpanFind.finished = True" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -271,112 +286,7 @@
         <Param val="CodeDSExplainInnerLoopEnd" valType="code" updates="None" name="name"/>
       </CodeComponent>
     </Routine>
-    <Routine name="DSScala">
-      <TextComponent name="DSTextScala" plugin="None">
-        <Param val="white" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
-        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="DSTextScala" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Wie sicher sind Sie mit der Antwort:) ? " valType="str" updates="constant" name="text"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
-      <SliderComponent name="Slider_Respone_Certainty" plugin="None">
-        <Param val="White" valType="color" updates="constant" name="borderColor"/>
-        <Param val="LightGray" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="Red" valType="color" updates="constant" name="fillColor"/>
-        <Param val="False" valType="bool" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
-        <Param val="True" valType="bool" updates="constant" name="forceEndRoutine"/>
-        <Param val="1" valType="num" updates="constant" name="granularity"/>
-        <Param val="" valType="code" updates="None" name="initVal"/>
-        <Param val="(&quot;sehr&quot;, &quot;wenig&quot;, &quot;mittel&quot;, &quot;viel&quot;)" valType="list" updates="constant" name="labels"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="Slider_Respone_Certainty" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, -0.2)" valType="list" updates="constant" name="pos"/>
-        <Param val="False" valType="bool" updates="constant" name="readOnly"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(1.0, 0.1)" valType="list" updates="set every frame" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="condition" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="False" valType="bool" updates="constant" name="storeHistory"/>
-        <Param val="True" valType="bool" updates="constant" name="storeRating"/>
-        <Param val="True" valType="bool" updates="constant" name="storeRatingTime"/>
-        <Param val="()" valType="list" updates="constant" name="styleTweaks"/>
-        <Param val="choice" valType="str" updates="constant" name="styles"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="(1, 2, 3, 4)" valType="list" updates="constant" name="ticks"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-      </SliderComponent>
-      <CodeComponent name="DSCodeFlagScala" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
-        <Param val="if t == DSTextScala.tStart:&amp;#10;    el_tracker.sendMessage('DTDSResponseon')&amp;#10;elif t == DSTextScala.tStop:&amp;#10;    el_tracker.sendMessage('DTDSResponseoff')" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="if ((t === DSTextScala.tStart)) {&amp;#10;    el_tracker.sendMessage(&quot;DTDSResponseon&quot;);&amp;#10;} else {&amp;#10;    if ((t === DSTextScala.tStop)) {&amp;#10;        el_tracker.sendMessage(&quot;DTDSResponseoff&quot;);&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="DSCodeFlagScala" valType="code" updates="None" name="name"/>
-      </CodeComponent>
-    </Routine>
     <Routine name="DSExplaineExample">
-      <TextComponent name="TextDigtSpanExample" plugin="None">
-        <Param val="white" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
-        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="TextDigtSpanExample" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="erklärt den unterschied zum normalen DigitSpan&amp;#10;&amp;#10;Es folgen ein paar teil runs zum testen ob es verstanden wurde&amp;#10;&amp;#10;space to go next" valType="str" updates="constant" name="text"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
       <KeyboardComponent name="KeyDigitSpanExplainExample" plugin="None">
         <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
@@ -396,35 +306,107 @@
         <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
-    </Routine>
-    <Routine name="DSCheckFindMax">
-      <TextComponent name="TextAskForDigitSpan" plugin="None">
-        <Param val="white" valType="color" updates="constant" name="color"/>
+      <CodeComponent name="code_2" plugin="None">
+        <Param val="filedata = 0" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="filedata = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="filedata = file.read(1);&amp;#10;file.close();&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="filedata = file.read(1)&amp;#10;file.close()" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="code_2" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <TextboxComponent name="TextExplain" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="TextAskForDigitSpan" valType="code" updates="None" name="name"/>
+        <Param val="0.08" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextExplain" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0.2)" valType="list" updates="constant" name="pos"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Bitte mit dem Keyboard die gezeiten Zahlen wiederholen&amp;#10;" valType="str" updates="constant" name="text"/>
+        <Param val="In diesem Teil werden Ihnen Zahlenfolgen präsentiert. Ihre Aufgabe ist es, sich diese Zahlen zu merken. Anschließend geben Sie die Zahlen in der richtigen Reihenfolge mündlich an den Versuchsleiter wieder. Danach bewerten Sie auf einer Skala von 1 bis 4, wie sicher Sie sich bei Ihrer Antwort waren (1 = &quot;gar nicht sicher&quot;, 4 = &quot;sehr sicher&quot;). Für die Skala verwenden Sie bitte die Knöpfe vor Ihnen. Nun werden ein paar Übungsdurchgänge folgen, in denen Sie sich mit der Aufgabe vertraut machen können. &amp;#10;&amp;#10; &amp;#10;&amp;#10;Drücken Sie einen beliebigen Knopf, um fortzufahren. " valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
+      </TextboxComponent>
+    </Routine>
+    <Routine name="DSCheckFindMax">
+      <TextboxComponent name="TextBoxAskForDigitSpan" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextBoxAskForDigitSpan" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Bitte mit dem Keyboard die gezeiten Zahlen wiederholen&amp;#10;(kein fixer text)&amp;#10;" valType="str" updates="constant" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
       <TextComponent name="TextRespose" plugin="None">
-        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
@@ -488,7 +470,7 @@
         <Param val="white" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="True" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Open Sans" valType="str" updates="constant" name="font"/>
@@ -513,7 +495,7 @@
         <Param val="white" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="True" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Open Sans" valType="str" updates="constant" name="font"/>
@@ -538,7 +520,7 @@
         <Param val="white" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="True" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="None" valType="str" updates="constant" name="flip"/>
         <Param val="Open Sans" valType="str" updates="constant" name="font"/>
@@ -561,7 +543,7 @@
       </TextComponent>
     </Routine>
     <Routine name="DSDisplayLetter">
-      <TextComponent name="DisplayedItem" plugin="None">
+      <TextComponent name="Text_Digit" plugin="None">
         <Param val="white" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
@@ -571,7 +553,7 @@
         <Param val="Open Sans" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
         <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="DisplayedItem" valType="code" updates="None" name="name"/>
+        <Param val="Text_Digit" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
@@ -580,9 +562,9 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1" valType="code" updates="constant" name="stopVal"/>
+        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="$Digits" valType="str" updates="set every repeat" name="text"/>
+        <Param val="$Digit" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
@@ -594,7 +576,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="eyetracking.calibration_validation(el_tracker, psychoJS.window, dummy_mode);&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="#calibration adn validation&amp;#10;eyetracking.calibration_validation(el_tracker, win, dummy_mode)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="#calibration and validation&amp;#10;eyetracking.calibration_validation(el_tracker, win, dummy_mode)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -607,31 +589,6 @@
       </CodeComponent>
     </Routine>
     <Routine name="DSExplaineFindMax">
-      <TextComponent name="TextExplainDigitSpanMaxFind" plugin="None">
-        <Param val="white" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
-        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="TextExplainDigitSpanMaxFind" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Erklärt was in der näcshte aufgabe getan wird :)&amp;#10;&amp;#10;Space to continue&amp;#10;" valType="str" updates="constant" name="text"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
       <KeyboardComponent name="KeyDigitspanFindMax" plugin="None">
         <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
@@ -651,52 +608,48 @@
         <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
-    </Routine>
-    <Routine name="DSTrailsEndInnerLoop">
-      <CodeComponent name="DSEndInnerLoops" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="LoopCounter = (LoopCounter + 1);&amp;#10;CorrectDigits.push(Number.parseInt(Digits).toString());&amp;#10;if ((LoopCounter &gt;= CurrentDigitChecking)) {&amp;#10;    LoopCounter = 0;&amp;#10;    DSLoopTrailsInner.finished = true;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="LoopCounter = LoopCounter + 1&amp;#10;&amp;#10;CorrectDigits.append(str(int(Digits)))&amp;#10;&amp;#10;if LoopCounter &gt;= CurrentDigitChecking:&amp;#10;    LoopCounter = 0 &amp;#10;    DSLoopTrailsInner.finished = True" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="DSEndInnerLoops" valType="code" updates="None" name="name"/>
-      </CodeComponent>
-    </Routine>
-    <Routine name="DSDisplayReal">
-      <TextComponent name="text" plugin="None">
-        <Param val="white" valType="color" updates="constant" name="color"/>
+      <TextboxComponent name="Text_ExplainFindMax" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
         <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="text" valType="code" updates="None" name="name"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="Text_ExplainFindMax" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Es folgen nun 30 Tests mit der gleichen Aufgabe. &amp;#10;Wir würden sie bitten diese gleich aus zufüllen.&amp;#10;&amp;#10;Press space to continue" valType="str" updates="constant" name="text"/>
+        <Param val="Hier wird der DigitSpan max gefunden &amp;#10;ich habe dafür keinen fixen Text im Dokument gefunden &amp;#10;sry falls ich es über sehen habe &amp;#10;(space to next) &amp;#10;(und es folgt das finden des digitspans --&gt; 3-max 9 zahlen you know the rest) " valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
+      </TextboxComponent>
+    </Routine>
+    <Routine name="DSDisplayReal">
       <KeyboardComponent name="Next_DigitSpanReal" plugin="None">
         <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
@@ -716,6 +669,46 @@
         <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
+      <TextboxComponent name="TextBoxFirstHalf_IntroText" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.08" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextBoxFirstHalf_IntroText" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Es folgen nun 15 Tests mit der gleichen Aufgabe. &amp;#10;Wir würden sie bitten diese gleich aus zufüllen.&amp;#10;&amp;#10;Press space to continue&amp;#10;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
     </Routine>
     <Routine name="NBExplain">
       <TextComponent name="TextNBackExplain" plugin="None">
@@ -936,31 +929,6 @@
       </CodeComponent>
     </Routine>
     <Routine name="DTExplain">
-      <TextComponent name="TextDTExplain" plugin="None">
-        <Param val="white" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
-        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="TextDTExplain" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Explains the DT&amp;#10;&amp;#10;space to next &amp;#10;" valType="str" updates="constant" name="text"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
       <KeyboardComponent name="KeyResponseDTExplain" plugin="None">
         <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
@@ -980,6 +948,46 @@
         <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
+      <TextboxComponent name="TextBoxExplainDT" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.08" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextBoxExplainDT" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Bitte geben sie von 1-4 wieder wie schwer es war zu antworten &amp;#10;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
     </Routine>
     <Routine name="DT_DS_InnerLoopEnd">
       <CodeComponent name="DT_DS_CodeEndInnerLoop" plugin="None">
@@ -1057,8 +1065,8 @@
         <Param val="if ((t === DT_NB_TextDisplay.tStart)) {&amp;#10;    el_tracker.sendMessage(&quot;DTNBon&quot;);&amp;#10;} else {&amp;#10;    if ((t === DT_NB_TextDisplay.tStop)) {&amp;#10;        el_tracker.sendMessage(&quot;DTNBoff&quot;);&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="DTNBackNumber = (DTNBackNumber + 1);&amp;#10;psychoJS.experiment.addData(&quot;DTNBackNumber&quot;, DTNBackNumber);&amp;#10;if ((DTNBackNumber &gt;= 10)) {&amp;#10;    DT_NB_NBackLoop.finished = true;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="DTNBackNumber = DTNBackNumber + 1&amp;#10;&amp;#10;thisExp.addData('DTNBackNumber', DTNBackNumber)&amp;#10;&amp;#10;#finishes the NBack after the size of DT&amp;#10;#currently 10&amp;#10;if(DTNBackNumber  &gt;= 10): &amp;#10;    DT_NB_NBackLoop.finished = True&amp;#10;" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="DTNBackNumber = (DTNBackNumber + 1);&amp;#10;psychoJS.experiment.addData(&quot;DTNBackNumber&quot;, DTNBackNumber);&amp;#10;if ((DTNBackNumber &gt;= 15)) {&amp;#10;    DT_NB_NBackLoop.finished = true;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="DTNBackNumber = DTNBackNumber + 1&amp;#10;&amp;#10;thisExp.addData('DTNBackNumber', DTNBackNumber)&amp;#10;&amp;#10;#finishes the NBack after the size of DT&amp;#10;#currently 10&amp;#10;if(DTNBackNumber  &gt;= 15): &amp;#10;    DT_NB_NBackLoop.finished = True&amp;#10;" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="DT_NB_CodeEndNB" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -1083,31 +1091,6 @@
       </CodeComponent>
     </Routine>
     <Routine name="DT_DS_ResponseScala">
-      <TextComponent name="DT_DS_TextScala" plugin="None">
-        <Param val="white" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="None" valType="str" updates="constant" name="flip"/>
-        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
-        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
-        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="DT_DS_TextScala" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Wie sicher sind Sie mit der Antwort:) ? " valType="str" updates="constant" name="text"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
-      </TextComponent>
       <SliderComponent name="DT_DS_Scala" plugin="None">
         <Param val="White" valType="color" updates="constant" name="borderColor"/>
         <Param val="LightGray" valType="color" updates="constant" name="color"/>
@@ -1161,6 +1144,46 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="DT_DS_CodeSaveScala" valType="code" updates="None" name="name"/>
       </CodeComponent>
+      <TextboxComponent name="TextBoxDTDSScalaResponse" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.08" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextBoxDTDSScalaResponse" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Bitte geben sie von 1-4 wieder wie schwer es war zu antworten &amp;#10;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
     </Routine>
     <Routine name="EyeTrackingStart">
       <CodeComponent name="EyeTrackingStartCode" plugin="None">
@@ -1244,77 +1267,9 @@
         <Param val="EyeTrackingEndScreen" valType="code" updates="None" name="name"/>
       </CodeComponent>
     </Routine>
-    <Routine name="DSAudioDisplayExplain">
-      <SoundComponent name="DSSoundExplain" plugin="None">
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="True" valType="bool" updates="constant" name="hamming"/>
-        <Param val="DSSoundExplain" valType="code" updates="None" name="name"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="A" valType="str" updates="constant" name="sound"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
-        <Param val="1" valType="num" updates="constant" name="volume"/>
-      </SoundComponent>
-      <CodeComponent name="DSCodeFullFlags" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="DSCodeFullFlags" valType="code" updates="None" name="name"/>
-      </CodeComponent>
-    </Routine>
-    <Routine name="DSDisplayDigitAudioFull">
-      <SoundComponent name="DSDisplaySoundFull" plugin="None">
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="True" valType="bool" updates="constant" name="hamming"/>
-        <Param val="DSDisplaySoundFull" valType="code" updates="None" name="name"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="A" valType="str" updates="constant" name="sound"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
-        <Param val="1" valType="num" updates="constant" name="volume"/>
-      </SoundComponent>
-      <CodeComponent name="DSEyeTrackingFlagFull" plugin="None">
-        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
-        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
-        <Param val="if t == DSSound.tStart:&amp;#10;    el_tracker.sendMessage('NBFullon')&amp;#10;elif t == DSSound.tStop:&amp;#10;    el_tracker.sendMessage('NBFulloff')" valType="extendedCode" updates="constant" name="Each Frame"/>
-        <Param val="if ((t === DSSound.tStart)) {&amp;#10;    el_tracker.sendMessage(&quot;NBFullon&quot;);&amp;#10;} else {&amp;#10;    if ((t === DSSound.tStop)) {&amp;#10;        el_tracker.sendMessage(&quot;NBFulloff&quot;);&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="DSEyeTrackingFlagFull" valType="code" updates="None" name="name"/>
-      </CodeComponent>
-    </Routine>
     <Routine name="DT_DS_DisplayAudio">
       <SoundComponent name="DT_DS_Audio" plugin="None">
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="True" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="True" valType="bool" updates="constant" name="hamming"/>
         <Param val="DT_DS_Audio" valType="code" updates="None" name="name"/>
@@ -1345,9 +1300,7 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="DT_DS_EyeTrackingFlag" valType="code" updates="None" name="name"/>
       </CodeComponent>
-    </Routine>
-    <Routine name="DT_DS_ResponeInAudio">
-      <TextComponent name="DT_DS_TextResponseInAudio" plugin="None">
+      <TextComponent name="DT_DS_TextDigit" plugin="None">
         <Param val="white" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
@@ -1357,7 +1310,7 @@
         <Param val="Open Sans" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
         <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="DT_DS_TextResponseInAudio" valType="code" updates="None" name="name"/>
+        <Param val="DT_DS_TextDigit" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
@@ -1366,12 +1319,14 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Bitte der Testperson ihre Zahlen wieder geben :) &amp;#10;&amp;#10;Danach Space drücken um weiter zu kommen" valType="str" updates="constant" name="text"/>
+        <Param val="$Digit" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
+    </Routine>
+    <Routine name="DT_DS_ResponeInAudio">
       <KeyboardComponent name="KeyResponseNext" plugin="None">
         <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
@@ -1408,9 +1363,214 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="DT_DS_EyeTrackingFlagResponse" valType="code" updates="None" name="name"/>
       </CodeComponent>
+      <TextboxComponent name="TextBoxDTDSResponseInAudio" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.08" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextBoxDTDSResponseInAudio" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Bitte der Testperson ihre Zahlen wieder geben :) &amp;#10;&amp;#10;Danach Space drücken um weiter zu kommen&amp;#10;(nicht fix)&amp;#10;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
     </Routine>
-    <Routine name="DSResponseAudio">
-      <TextComponent name="DSTextResponseAudio" plugin="None">
+    <Routine name="DSDisplayAudioFindMax">
+      <SoundComponent name="DSDisplayAudio" plugin="None">
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="hamming"/>
+        <Param val="DSDisplayAudio" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="A" valType="str" updates="constant" name="sound"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+        <Param val="1" valType="num" updates="constant" name="volume"/>
+      </SoundComponent>
+    </Routine>
+    <Routine name="Complet_FindMax">
+      <TextboxComponent name="TextBoxFindMaxComplet" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextBoxFindMaxComplet" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Die Kalibrierung ist abgeschlossen es folgt noch ein Probedurchlauf&amp;#10;(nicht fix)&amp;#10;" valType="str" updates="constant" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
+    </Routine>
+    <Routine name="DS_AudioDisplayExplain">
+      <SoundComponent name="DSSoundExplain" plugin="None">
+        <Param val="True" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="hamming"/>
+        <Param val="DSSoundExplain" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="A" valType="str" updates="constant" name="sound"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+        <Param val="1" valType="num" updates="constant" name="volume"/>
+      </SoundComponent>
+      <CodeComponent name="DSCodeFullFlags" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="DSCodeFullFlags" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <TextboxComponent name="TextBoxDigitExplain" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.08" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextBoxDigitExplain" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="1" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="$Digit" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
+    </Routine>
+    <Routine name="DS_DisplayDigitAudioFull">
+      <SoundComponent name="DSDisplaySoundFull" plugin="None">
+        <Param val="True" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="hamming"/>
+        <Param val="DSDisplaySoundFull" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="A" valType="str" updates="constant" name="sound"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+        <Param val="1" valType="num" updates="constant" name="volume"/>
+      </SoundComponent>
+      <CodeComponent name="DSEyeTrackingFlagFull" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
+        <Param val="if t == DSSound.tStart:&amp;#10;    el_tracker.sendMessage('DSSoundon')&amp;#10;elif t == DSSound.tStop:&amp;#10;    el_tracker.sendMessage('DSSoundoff')" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="if ((t === DSSound.tStart)) {&amp;#10;    el_tracker.sendMessage(&quot;DSSoundon&quot;);&amp;#10;} else {&amp;#10;    if ((t === DSSound.tStop)) {&amp;#10;        el_tracker.sendMessage(&quot;DSSoundoff&quot;);&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="DSEyeTrackingFlagFull" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <TextComponent name="TextDigitDisplay" plugin="None">
         <Param val="white" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
@@ -1420,7 +1580,7 @@
         <Param val="Open Sans" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
         <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="DSTextResponseAudio" valType="code" updates="None" name="name"/>
+        <Param val="TextDigitDisplay" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
@@ -1429,12 +1589,214 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Bitte der Testperson ihre Zahlen wieder geben :) &amp;#10;&amp;#10;Danach Space drücken um weiter zu kommen" valType="str" updates="constant" name="text"/>
+        <Param val="$Digit&amp;#10;" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
+    </Routine>
+    <Routine name="DS_TrailsEndInnerLoop">
+      <CodeComponent name="DSEndInnerLoops" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="LoopCounter = (LoopCounter + 1);&amp;#10;CorrectDigits.push(Number.parseInt(Digits).toString());&amp;#10;if ((LoopCounter &gt;= CurrentDigitChecking)) {&amp;#10;    LoopCounter = 0;&amp;#10;    DSLoopTrailsInner.finished = true;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="LoopCounter = LoopCounter + 1&amp;#10;&amp;#10;CorrectDigits.append(str(int(Digits)))&amp;#10;&amp;#10;if LoopCounter &gt;= CurrentDigitChecking:&amp;#10;    LoopCounter = 0 &amp;#10;    DSLoopTrailsInner.finished = True" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="DSEndInnerLoops" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="HalfWayMark">
+      <TextboxComponent name="TextBox_HalfWayMark" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.08" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextBox_HalfWayMark" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="We are half way there &amp;#10;woho&amp;#10;(space next)" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
+      <KeyboardComponent name="KeyResponse_HalfWayMark" plugin="None">
+        <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="" valType="str" updates="constant" name="correctAns"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="True" valType="bool" updates="constant" name="discard previous"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="forceEndRoutine"/>
+        <Param val="KeyResponse_HalfWayMark" valType="code" updates="None" name="name"/>
+        <Param val="press" valType="str" updates="constant" name="registerOn"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="last key" valType="str" updates="constant" name="store"/>
+        <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+      </KeyboardComponent>
+    </Routine>
+    <Routine name="DT_Notic_TestStats">
+      <TextboxComponent name="TextBoxDTExplainOver" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.08" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextBoxDTExplainOver" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Bitte geben sie von 1-4 wieder wie schwer es war zu antworten &amp;#10;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
+    </Routine>
+    <Routine name="DS_Scala">
+      <CodeComponent name="DSCodeFlagScala" plugin="None">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
+        <Param val="if t == DSSalaResponse.tStart:&amp;#10;    el_tracker.sendMessage('DTDSResponseon')&amp;#10;elif t == DSSalaResponse.tStop:&amp;#10;    el_tracker.sendMessage('DTDSResponseoff')" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="if ((t === DSSalaResponse.tStart)) {&amp;#10;    el_tracker.sendMessage(&quot;DTDSResponseon&quot;);&amp;#10;} else {&amp;#10;    if ((t === DSSalaResponse.tStop)) {&amp;#10;        el_tracker.sendMessage(&quot;DTDSResponseoff&quot;);&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="DSCodeFlagScala" valType="code" updates="None" name="name"/>
+      </CodeComponent>
+      <KeyboardComponent name="DSSalaResponse" plugin="None">
+        <Param val="'1','2','3','4'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="" valType="str" updates="constant" name="correctAns"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="True" valType="bool" updates="constant" name="discard previous"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="forceEndRoutine"/>
+        <Param val="DSSalaResponse" valType="code" updates="None" name="name"/>
+        <Param val="press" valType="str" updates="constant" name="registerOn"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="last key" valType="str" updates="constant" name="store"/>
+        <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+      </KeyboardComponent>
+      <TextboxComponent name="TextBoxScalaResponse" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.08" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextBoxScalaResponse" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Bitte geben sie von 1-4 wieder wie schwer es war zu antworten &amp;#10;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
+    </Routine>
+    <Routine name="DS_ResponseAudio">
       <KeyboardComponent name="DSAudioKeyNext" plugin="None">
         <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
         <Param val="" valType="str" updates="constant" name="correctAns"/>
@@ -1471,30 +1833,53 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="DSCodeFlag" valType="code" updates="None" name="name"/>
       </CodeComponent>
-    </Routine>
-    <Routine name="DSDisplayAudioFindMax">
-      <SoundComponent name="DSDisplayAudio" plugin="None">
+      <TextboxComponent name="TextBoxFirstHalf_Response" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="alignment"/>
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="True" valType="bool" updates="constant" name="autoLog"/>
+        <Param val="False" valType="bool" updates="constant" name="bold"/>
+        <Param val="None" valType="color" updates="constant" name="borderColor"/>
+        <Param val="2" valType="num" updates="constant" name="borderWidth"/>
+        <Param val="-1.0000, -1.0000, -1.0000" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="True" valType="bool" updates="constant" name="hamming"/>
-        <Param val="DSDisplayAudio" valType="code" updates="None" name="name"/>
+        <Param val="False" valType="bool" updates="constant" name="editable"/>
+        <Param val="0.0039, 0.0039, 0.0039" valType="color" updates="constant" name="fillColor"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="False" valType="bool" updates="constant" name="italic"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.08" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="1.0" valType="num" updates="constant" name="lineSpacing"/>
+        <Param val="TextBoxFirstHalf_Response" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="visible" valType="str" updates="constant" name="overflow"/>
+        <Param val="0" valType="num" updates="constant" name="padding"/>
+        <Param val="Type here..." valType="str" updates="constant" name="placeholder"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="A" valType="str" updates="constant" name="sound"/>
+        <Param val="(1.2, 0.7)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="list" updates="constant" name="speechPoint"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="1.0" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
-        <Param val="1" valType="num" updates="constant" name="volume"/>
-      </SoundComponent>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="Bitte der Testperson ihre Zahlen wieder geben :) &amp;#10;&amp;#10;Danach Space drücken um weiter zu kommen&amp;#10;" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+      </TextboxComponent>
     </Routine>
   </Routines>
   <Flow>
     <Routine name="Welcome"/>
     <Routine name="DSSetUpVars"/>
     <Routine name="DSExplaineFindMax"/>
-    <LoopInitiator loopType="TrialHandler" name="LoopMaxDigitSpanFind">
+    <LoopInitiator loopType="TrialHandler" name="DS_FindMax_Loop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="" valType="file"/>
@@ -1502,30 +1887,31 @@
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
       <Param name="nReps" updates="None" val="9" valType="num"/>
-      <Param name="name" updates="None" val="LoopMaxDigitSpanFind" valType="code"/>
+      <Param name="name" updates="None" val="DS_FindMax_Loop" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <LoopInitiator loopType="TrialHandler" name="LoopDigitSpan">
+    <LoopInitiator loopType="TrialHandler" name="DS_FindMax_InnerLoop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="[{'Digits': 1.0}, {'Digits': 2.0}, {'Digits': 3.0}, {'Digits': 4.0}, {'Digits': 5.0}, {'Digits': 6.0}, {'Digits': 7.0}, {'Digits': 8.0}, {'Digits': 9.0}]" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="Conditions/Conditions_Digits.xlsx" valType="file"/>
+      <Param name="conditions" updates="None" val="[{'Digits': 1, 'Audio': 'Conditions/Audio/1.ogg'}, {'Digits': 2, 'Audio': 'Conditions/Audio/2.ogg'}, {'Digits': 3, 'Audio': 'Conditions/Audio/3.ogg'}, {'Digits': 4, 'Audio': 'Conditions/Audio/4.ogg'}, {'Digits': 5, 'Audio': 'Conditions/Audio/5.ogg'}, {'Digits': 6, 'Audio': 'Conditions/Audio/6.ogg'}, {'Digits': 7, 'Audio': 'Conditions/Audio/7.ogg'}, {'Digits': 8, 'Audio': 'Conditions/Audio/8.ogg'}, {'Digits': 9, 'Audio': 'Conditions/Audio/9.ogg'}]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="Conditions/Conditions.xlsx" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="False" valType="bool"/>
-      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="loopType" updates="None" val="sequential" valType="str"/>
       <Param name="nReps" updates="None" val="1" valType="num"/>
-      <Param name="name" updates="None" val="LoopDigitSpan" valType="code"/>
+      <Param name="name" updates="None" val="DS_FindMax_InnerLoop" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <Routine name="DSDisplayLetter"/>
     <Routine name="FocusCross"/>
     <Routine name="DSFindMaxEndInnerLoop"/>
-    <LoopTerminator name="LoopDigitSpan"/>
+    <LoopTerminator name="DS_FindMax_InnerLoop"/>
     <Routine name="DSCheckFindMax"/>
-    <Routine name="DSScala"/>
+    <Routine name="DS_Scala"/>
     <Routine name="DSFindMaxEndOuterLoop"/>
-    <LoopTerminator name="LoopMaxDigitSpanFind"/>
+    <LoopTerminator name="DS_FindMax_Loop"/>
+    <Routine name="Complet_FindMax"/>
     <Routine name="DSExplaineExample"/>
-    <LoopInitiator loopType="TrialHandler" name="LoopExplainDigitSpanOuter">
+    <LoopInitiator loopType="TrialHandler" name="DS_Explain_Loop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="" valType="file"/>
@@ -1533,90 +1919,103 @@
       <Param name="isTrials" updates="None" val="False" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
       <Param name="nReps" updates="None" val="3" valType="num"/>
-      <Param name="name" updates="None" val="LoopExplainDigitSpanOuter" valType="code"/>
+      <Param name="name" updates="None" val="DS_Explain_Loop" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <LoopInitiator loopType="TrialHandler" name="LoopExplainDigitSpan">
+    <LoopInitiator loopType="TrialHandler" name="DS_Explain_InnerLoop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="[{'Digits': 1.0}, {'Digits': 2.0}, {'Digits': 3.0}, {'Digits': 4.0}, {'Digits': 5.0}, {'Digits': 6.0}, {'Digits': 7.0}, {'Digits': 8.0}, {'Digits': 9.0}]" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="Conditions/Conditions_Digits.xlsx" valType="file"/>
+      <Param name="conditions" updates="None" val="[{'Digits': 1, 'Audio': 'Conditions/Audio/1.ogg'}, {'Digits': 2, 'Audio': 'Conditions/Audio/2.ogg'}, {'Digits': 3, 'Audio': 'Conditions/Audio/3.ogg'}, {'Digits': 4, 'Audio': 'Conditions/Audio/4.ogg'}, {'Digits': 5, 'Audio': 'Conditions/Audio/5.ogg'}, {'Digits': 6, 'Audio': 'Conditions/Audio/6.ogg'}, {'Digits': 7, 'Audio': 'Conditions/Audio/7.ogg'}, {'Digits': 8, 'Audio': 'Conditions/Audio/8.ogg'}, {'Digits': 9, 'Audio': 'Conditions/Audio/9.ogg'}]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="Conditions/Conditions.xlsx" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="False" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
       <Param name="nReps" updates="None" val="9" valType="num"/>
-      <Param name="name" updates="None" val="LoopExplainDigitSpan" valType="code"/>
+      <Param name="name" updates="None" val="DS_Explain_InnerLoop" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <Routine name="DSAudioDisplayExplain"/>
+    <Routine name="DS_AudioDisplayExplain"/>
     <Routine name="FocusCross"/>
     <Routine name="DSExplainEndInnerLoop"/>
-    <LoopTerminator name="LoopExplainDigitSpan"/>
-    <Routine name="DSResponseAudio"/>
-    <Routine name="DSScala"/>
-    <LoopTerminator name="LoopExplainDigitSpanOuter"/>
+    <LoopTerminator name="DS_Explain_InnerLoop"/>
+    <Routine name="DS_ResponseAudio"/>
+    <Routine name="DS_Scala"/>
+    <LoopTerminator name="DS_Explain_Loop"/>
     <Routine name="DSDisplayReal"/>
     <Routine name="EyeTrackingStart"/>
-    <LoopInitiator loopType="TrialHandler" name="DSLoopTrailsOuter">
+    <LoopInitiator loopType="TrialHandler" name="DS_Trail_F_Loop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
       <Param name="conditionsFile" updates="None" val="" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="30" valType="num"/>
-      <Param name="name" updates="None" val="DSLoopTrailsOuter" valType="code"/>
+      <Param name="nReps" updates="None" val="15" valType="num"/>
+      <Param name="name" updates="None" val="DS_Trail_F_Loop" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <LoopInitiator loopType="TrialHandler" name="DSLoopTrailsInner">
+    <LoopInitiator loopType="TrialHandler" name="DS_Trail_F_InnerLoop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="[{'Digits': 1.0}, {'Digits': 2.0}, {'Digits': 3.0}, {'Digits': 4.0}, {'Digits': 5.0}, {'Digits': 6.0}, {'Digits': 7.0}, {'Digits': 8.0}, {'Digits': 9.0}]" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="Conditions/Conditions_Digits.xlsx" valType="file"/>
+      <Param name="conditions" updates="None" val="[{'Digits': 1, 'Audio': 'Conditions/Audio/1.ogg'}, {'Digits': 2, 'Audio': 'Conditions/Audio/2.ogg'}, {'Digits': 3, 'Audio': 'Conditions/Audio/3.ogg'}, {'Digits': 4, 'Audio': 'Conditions/Audio/4.ogg'}, {'Digits': 5, 'Audio': 'Conditions/Audio/5.ogg'}, {'Digits': 6, 'Audio': 'Conditions/Audio/6.ogg'}, {'Digits': 7, 'Audio': 'Conditions/Audio/7.ogg'}, {'Digits': 8, 'Audio': 'Conditions/Audio/8.ogg'}, {'Digits': 9, 'Audio': 'Conditions/Audio/9.ogg'}]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="Conditions/Conditions.xlsx" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="False" valType="bool"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
       <Param name="nReps" updates="None" val="1" valType="num"/>
-      <Param name="name" updates="None" val="DSLoopTrailsInner" valType="code"/>
+      <Param name="name" updates="None" val="DS_Trail_F_InnerLoop" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
-    <Routine name="DSDisplayDigitAudioFull"/>
+    <Routine name="DS_DisplayDigitAudioFull"/>
     <Routine name="FocusCross"/>
-    <Routine name="DSTrailsEndInnerLoop"/>
-    <LoopTerminator name="DSLoopTrailsInner"/>
-    <Routine name="DSResponseAudio"/>
-    <Routine name="DSScala"/>
-    <LoopTerminator name="DSLoopTrailsOuter"/>
-    <Routine name="EyeTrackingStop"/>
-    <Routine name="NBExplain"/>
-    <LoopInitiator loopType="TrialHandler" name="NBLoopExplain">
-      <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="[{'Digits': 1.0}, {'Digits': 2.0}, {'Digits': 3.0}, {'Digits': 4.0}, {'Digits': 5.0}, {'Digits': 6.0}, {'Digits': 7.0}, {'Digits': 8.0}, {'Digits': 9.0}]" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="Conditions/Conditions_Digits.xlsx" valType="file"/>
-      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
-      <Param name="isTrials" updates="None" val="False" valType="bool"/>
-      <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="9" valType="num"/>
-      <Param name="name" updates="None" val="NBLoopExplain" valType="code"/>
-      <Param name="random seed" updates="None" val="" valType="code"/>
-    </LoopInitiator>
-    <Routine name="NBDisplayDigitExplain"/>
-    <LoopTerminator name="NBLoopExplain"/>
-    <Routine name="NBFullTest"/>
-    <Routine name="EyeTrackingStart"/>
-    <LoopInitiator loopType="TrialHandler" name="NBLoopFull">
-      <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="[{'Digits': 1.0}, {'Digits': 2.0}, {'Digits': 3.0}, {'Digits': 4.0}, {'Digits': 5.0}, {'Digits': 6.0}, {'Digits': 7.0}, {'Digits': 8.0}, {'Digits': 9.0}]" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="Conditions/Conditions_Digits.xlsx" valType="file"/>
-      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
-      <Param name="isTrials" updates="None" val="False" valType="bool"/>
-      <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="20" valType="num"/>
-      <Param name="name" updates="None" val="NBLoopFull" valType="code"/>
-      <Param name="random seed" updates="None" val="" valType="code"/>
-    </LoopInitiator>
-    <Routine name="NBackFullDisplayDigit"/>
-    <LoopTerminator name="NBLoopFull"/>
+    <Routine name="DS_TrailsEndInnerLoop"/>
+    <LoopTerminator name="DS_Trail_F_InnerLoop"/>
+    <Routine name="DS_ResponseAudio"/>
+    <Routine name="DS_Scala"/>
+    <LoopTerminator name="DS_Trail_F_Loop"/>
     <Routine name="EyeTrackingStop"/>
     <Routine name="DTExplain"/>
+    <LoopInitiator loopType="TrialHandler" name="DT_Explain_Loop">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="3" valType="num"/>
+      <Param name="name" updates="None" val="DT_Explain_Loop" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <LoopInitiator loopType="TrialHandler" name="DT_DS_Example_InnerLoop">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[{'Digits': 1, 'Audio': 'Conditions/Audio/1.ogg'}, {'Digits': 2, 'Audio': 'Conditions/Audio/2.ogg'}, {'Digits': 3, 'Audio': 'Conditions/Audio/3.ogg'}, {'Digits': 4, 'Audio': 'Conditions/Audio/4.ogg'}, {'Digits': 5, 'Audio': 'Conditions/Audio/5.ogg'}, {'Digits': 6, 'Audio': 'Conditions/Audio/6.ogg'}, {'Digits': 7, 'Audio': 'Conditions/Audio/7.ogg'}, {'Digits': 8, 'Audio': 'Conditions/Audio/8.ogg'}, {'Digits': 9, 'Audio': 'Conditions/Audio/9.ogg'}]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="Conditions/Conditions.xlsx" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="5" valType="num"/>
+      <Param name="name" updates="None" val="DT_DS_Example_InnerLoop" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="DT_DS_DisplayAudio"/>
+    <Routine name="FocusCross"/>
+    <Routine name="DT_DS_InnerLoopEnd"/>
+    <LoopTerminator name="DT_DS_Example_InnerLoop"/>
+    <LoopInitiator loopType="TrialHandler" name="DT_NB_Explain_Loop">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[{'Digits': 1, 'Audio': 'Conditions/Audio/1.ogg'}, {'Digits': 2, 'Audio': 'Conditions/Audio/2.ogg'}, {'Digits': 3, 'Audio': 'Conditions/Audio/3.ogg'}, {'Digits': 4, 'Audio': 'Conditions/Audio/4.ogg'}, {'Digits': 5, 'Audio': 'Conditions/Audio/5.ogg'}, {'Digits': 6, 'Audio': 'Conditions/Audio/6.ogg'}, {'Digits': 7, 'Audio': 'Conditions/Audio/7.ogg'}, {'Digits': 8, 'Audio': 'Conditions/Audio/8.ogg'}, {'Digits': 9, 'Audio': 'Conditions/Audio/9.ogg'}]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="Conditions/Conditions.xlsx" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="5" valType="num"/>
+      <Param name="name" updates="None" val="DT_NB_Explain_Loop" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="DT_NB_Display"/>
+    <LoopTerminator name="DT_NB_Explain_Loop"/>
+    <Routine name="DT_DS_ResponeInAudio"/>
+    <Routine name="DT_DS_ResponseScala"/>
+    <LoopTerminator name="DT_Explain_Loop"/>
+    <Routine name="DT_Notic_TestStats"/>
     <Routine name="EyeTrackingStart"/>
     <LoopInitiator loopType="TrialHandler" name="DT_Full_Loop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
@@ -1625,15 +2024,15 @@
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="30" valType="num"/>
+      <Param name="nReps" updates="None" val="15" valType="num"/>
       <Param name="name" updates="None" val="DT_Full_Loop" valType="code"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <Routine name="DT_ManageVars"/>
     <LoopInitiator loopType="TrialHandler" name="DT_DS_InnerLoop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="[{'Digits': 1.0}, {'Digits': 2.0}, {'Digits': 3.0}, {'Digits': 4.0}, {'Digits': 5.0}, {'Digits': 6.0}, {'Digits': 7.0}, {'Digits': 8.0}, {'Digits': 9.0}]" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="Conditions/Conditions_Digits.xlsx" valType="file"/>
+      <Param name="conditions" updates="None" val="[{'Digits': 1, 'Audio': 'Conditions/Audio/1.mp3'}, {'Digits': 2, 'Audio': 'Conditions/Audio/2.mp3'}, {'Digits': 3, 'Audio': 'Conditions/Audio/3.mp3'}, {'Digits': 4, 'Audio': 'Conditions/Audio/4.mp3'}, {'Digits': 5, 'Audio': 'Conditions/Audio/5.mp3'}, {'Digits': 6, 'Audio': 'Conditions/Audio/6.mp3'}, {'Digits': 7, 'Audio': 'Conditions/Audio/7.mp3'}, {'Digits': 8, 'Audio': 'Conditions/Audio/8.mp3'}, {'Digits': 9, 'Audio': 'Conditions/Audio/9.mp3'}]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="Conditions/Conditions.xlsx" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="False" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
@@ -1647,8 +2046,8 @@
     <LoopTerminator name="DT_DS_InnerLoop"/>
     <LoopInitiator loopType="TrialHandler" name="DT_NB_NBackLoop">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
-      <Param name="conditions" updates="None" val="[{'Digits': 1.0}, {'Digits': 2.0}, {'Digits': 3.0}, {'Digits': 4.0}, {'Digits': 5.0}, {'Digits': 6.0}, {'Digits': 7.0}, {'Digits': 8.0}, {'Digits': 9.0}]" valType="str"/>
-      <Param name="conditionsFile" updates="None" val="Conditions/Conditions_Digits.xlsx" valType="file"/>
+      <Param name="conditions" updates="None" val="[{'Digits': 1, 'Audio': 'Conditions/Audio/1.mp3'}, {'Digits': 2, 'Audio': 'Conditions/Audio/2.mp3'}, {'Digits': 3, 'Audio': 'Conditions/Audio/3.mp3'}, {'Digits': 4, 'Audio': 'Conditions/Audio/4.mp3'}, {'Digits': 5, 'Audio': 'Conditions/Audio/5.mp3'}, {'Digits': 6, 'Audio': 'Conditions/Audio/6.mp3'}, {'Digits': 7, 'Audio': 'Conditions/Audio/7.mp3'}, {'Digits': 8, 'Audio': 'Conditions/Audio/8.mp3'}, {'Digits': 9, 'Audio': 'Conditions/Audio/9.mp3'}]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="Conditions/Conditions.xlsx" valType="file"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
@@ -1661,6 +2060,78 @@
     <Routine name="DT_DS_ResponeInAudio"/>
     <Routine name="DT_DS_ResponseScala"/>
     <LoopTerminator name="DT_Full_Loop"/>
+    <Routine name="HalfWayMark"/>
+    <LoopInitiator loopType="TrialHandler" name="DS_Second_Loop">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="15" valType="num"/>
+      <Param name="name" updates="None" val="DS_Second_Loop" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <LoopInitiator loopType="TrialHandler" name="DS_SecondHalf_InnerLoop">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[{'Digits': 1, 'Audio': 'Conditions/Audio/1.ogg'}, {'Digits': 2, 'Audio': 'Conditions/Audio/2.ogg'}, {'Digits': 3, 'Audio': 'Conditions/Audio/3.ogg'}, {'Digits': 4, 'Audio': 'Conditions/Audio/4.ogg'}, {'Digits': 5, 'Audio': 'Conditions/Audio/5.ogg'}, {'Digits': 6, 'Audio': 'Conditions/Audio/6.ogg'}, {'Digits': 7, 'Audio': 'Conditions/Audio/7.ogg'}, {'Digits': 8, 'Audio': 'Conditions/Audio/8.ogg'}, {'Digits': 9, 'Audio': 'Conditions/Audio/9.ogg'}]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="Conditions/Conditions.xlsx" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="5" valType="num"/>
+      <Param name="name" updates="None" val="DS_SecondHalf_InnerLoop" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="DS_DisplayDigitAudioFull"/>
+    <Routine name="FocusCross"/>
+    <Routine name="DS_TrailsEndInnerLoop"/>
+    <LoopTerminator name="DS_SecondHalf_InnerLoop"/>
+    <Routine name="DS_ResponseAudio"/>
+    <Routine name="DS_Scala"/>
+    <LoopTerminator name="DS_Second_Loop"/>
+    <LoopInitiator loopType="TrialHandler" name="DT_SecondLoop">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="15" valType="num"/>
+      <Param name="name" updates="None" val="DT_SecondLoop" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <LoopInitiator loopType="TrialHandler" name="DT_DS_Second_InnerLoop">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[{'Digits': 1, 'Audio': 'Conditions/Audio/1.ogg'}, {'Digits': 2, 'Audio': 'Conditions/Audio/2.ogg'}, {'Digits': 3, 'Audio': 'Conditions/Audio/3.ogg'}, {'Digits': 4, 'Audio': 'Conditions/Audio/4.ogg'}, {'Digits': 5, 'Audio': 'Conditions/Audio/5.ogg'}, {'Digits': 6, 'Audio': 'Conditions/Audio/6.ogg'}, {'Digits': 7, 'Audio': 'Conditions/Audio/7.ogg'}, {'Digits': 8, 'Audio': 'Conditions/Audio/8.ogg'}, {'Digits': 9, 'Audio': 'Conditions/Audio/9.ogg'}]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="Conditions/Conditions.xlsx" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="5" valType="num"/>
+      <Param name="name" updates="None" val="DT_DS_Second_InnerLoop" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="DT_DS_DisplayAudio"/>
+    <Routine name="FocusCross"/>
+    <Routine name="DT_DS_InnerLoopEnd"/>
+    <LoopTerminator name="DT_DS_Second_InnerLoop"/>
+    <LoopInitiator loopType="TrialHandler" name="DT_NB_Loop">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[{'Digits': 1, 'Audio': 'Conditions/Audio/1.ogg'}, {'Digits': 2, 'Audio': 'Conditions/Audio/2.ogg'}, {'Digits': 3, 'Audio': 'Conditions/Audio/3.ogg'}, {'Digits': 4, 'Audio': 'Conditions/Audio/4.ogg'}, {'Digits': 5, 'Audio': 'Conditions/Audio/5.ogg'}, {'Digits': 6, 'Audio': 'Conditions/Audio/6.ogg'}, {'Digits': 7, 'Audio': 'Conditions/Audio/7.ogg'}, {'Digits': 8, 'Audio': 'Conditions/Audio/8.ogg'}, {'Digits': 9, 'Audio': 'Conditions/Audio/9.ogg'}]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="Conditions/Conditions.xlsx" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="5" valType="num"/>
+      <Param name="name" updates="None" val="DT_NB_Loop" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="DT_NB_Display"/>
+    <LoopTerminator name="DT_NB_Loop"/>
+    <Routine name="DT_DS_ResponeInAudio"/>
+    <Routine name="DT_DS_ResponseScala"/>
+    <LoopTerminator name="DT_SecondLoop"/>
     <Routine name="EyeTrackingStop"/>
     <Routine name="EndScreen"/>
   </Flow>
